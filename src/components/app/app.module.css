@@ -1,0 +1,10 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  height: 40px;
+  margin: 20px 0;
+}
+
+.title {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}

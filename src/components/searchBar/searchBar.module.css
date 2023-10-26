@@ -1,0 +1,33 @@
+.search-wrapper {
+  display: flex;
+}
+.search {
+  display: flex;
+  margin: 0 auto;
+  width: max-content;
+  height: 35px;
+  border: 1px solid black;
+  border-radius: 17.5px;
+  overflow: hidden;
+}
+.search__input,
+.search__submit {
+  border: none;
+  outline: none;
+  padding: 5px 15px;
+}
+.search__submit {
+  background-color: #242424;
+  border-left: 1px solid black;
+}
+.search__submit:hover {
+  background-color: gray;
+  cursor: pointer;
+}
+
+.search__input {
+  font-size: 20px;
+}
+.search__image {
+  height: 100%;
+}
