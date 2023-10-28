@@ -9,12 +9,8 @@ export function Cards(props: CardsProps) {
     cardsSection = (
       <>
         <section className={classNames.itemsNumber}>
-          <span className={classNames.itemsNumberTotal}>
-            Total results: {props.count}
-          </span>
-          <span className={classNames.itemsNumberPage}>
-            Results on page: {props.items.length}
-          </span>
+          <span className={classNames.itemsNumberTotal}>Total results: {props.count}</span>
+          <span className={classNames.itemsNumberPage}>Results on page: {props.items.length}</span>
         </section>
         <section className={classNames.itemsWrapper}>
           {props.items.map((item, index) => (

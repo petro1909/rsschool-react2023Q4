@@ -3,10 +3,7 @@ import { BaseProps } from '../../../types/baseProps';
 import { ErrorFallback } from '../errorFallback/errorFallback';
 import { ErrorBoundaryState } from './errorBoundaryState';
 
-export class ErrorBoundary extends React.Component<
-  BaseProps,
-  ErrorBoundaryState
-> {
+export class ErrorBoundary extends React.Component<BaseProps, ErrorBoundaryState> {
   constructor(props: BaseProps) {
     super(props);
     this.state = {};
@@ -24,12 +21,7 @@ export class ErrorBoundary extends React.Component<
 
   render() {
     if (this.state.error) {
-      return (
-        <ErrorFallback
-          error={this.state.error}
-          errorInfo={this.state.errorInfo}
-        />
-      );
+      return <ErrorFallback error={this.state.error} errorInfo={this.state.errorInfo} />;
     } else {
       return this.props.children;
     }

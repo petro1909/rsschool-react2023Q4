@@ -17,11 +17,9 @@ export function ErrorFallback(props: ErrorFallbackProps) {
         <h2>{props.error?.message}</h2>
         <h3>Error stack</h3>
         <div className={classNames.errorStack}>
-          {splitErrorStack(props.errorInfo?.componentStack).map(
-            (item, index) => (
-              <p key={index}>{item}</p>
-            )
-          )}
+          {splitErrorStack(props.errorInfo?.componentStack).map((item, index) => (
+            <p key={index}>{item}</p>
+          ))}
         </div>
       </div>
     </section>

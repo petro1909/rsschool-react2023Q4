@@ -32,10 +32,7 @@ export function SearchBar(props: SearchBarProps) {
           value={text}
           onChange={(e) => setText(e.target.value)}
         ></input>
-        <button
-          className={classNames.searchSubmit}
-          onClick={async () => await search()}
-        >
+        <button className={classNames.searchSubmit} onClick={async () => await search()}>
           <img className={classNames.searchImage} src={searchIcon}></img>
         </button>
       </div>
