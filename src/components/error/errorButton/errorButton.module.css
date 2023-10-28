@@ -6,3 +6,7 @@
   color: rgb(255, 255, 255);
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
+
+.error-button:hover {
+  cursor: pointer;
+}
