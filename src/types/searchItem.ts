@@ -7,11 +7,14 @@ export type SearchItem = {
   eye_color: string;
   birth_year: string;
 };
-export type SearchItems = {
+export type ApiResult = {
+  totalCount: number;
+  next: string | null;
+  previous: string | null;
   items: Array<SearchItem>;
-  count: number;
 };
-export type SearchItemJsonResult = {
+
+export type ApiRawResult = {
   count: number;
   next: string | null;
   previous: string | null;
