@@ -1,8 +1,8 @@
 import React from 'react';
-import { ErrorFallbackState } from './errorFallbackState';
+import { ErrorFallbackProps } from './errorFallbackProps';
 import classNames from './errorFalback.module.css';
 
-export function ErrorFallback(props: ErrorFallbackState) {
+export function ErrorFallback(props: ErrorFallbackProps) {
   const splitErrorStack = (stack?: string | null): string[] => {
     if (stack) {
       return stack.split('\n');

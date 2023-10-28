@@ -1,4 +1,4 @@
-export type ErrorFallbackState = {
+export type ErrorFallbackProps = {
   error?: Error;
   errorInfo?: React.ErrorInfo;
 };
