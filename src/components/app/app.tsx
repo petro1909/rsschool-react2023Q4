@@ -1,40 +1,18 @@
 import React from 'react';
-import SearchBar from '../searchBar/searchBar';
-import Cards from '../../components/cards/cards';
+import { SearchBar } from '../searchBar/searchBar';
+import { Cards } from '../../components/cards/cards';
 import getFetchJson from '../../service/fetchService';
-import { SearchItemJsonResult } from '../../types/searchItem';
-import { AppProps } from './appProps';
-import { AppState } from './appState';
+import { SearchItemJsonResult, SearchItem } from '../../types/searchItem';
 import { ErrorButton } from '../error/errorButton/errorButton';
 import classNames from './app.module.css';
 
-export default class App extends React.Component<AppProps, AppState> {
-  constructor(props: AppProps) {
-    super(props);
-    this.state = { items: [], isLoaded: false, count: 0 };
-  }
+export default function App() {
+  const [items, setItems] = React.useState<SearchItem[]>([]);
+  const [loaded, setLoaded] = React.useState(false);
+  const [count, setCount] = React.useState(0);
 
-  render() {
-    return (
-      <>
-        <header className={classNames.header}>
-          <SearchBar searchItemFn={this.search.bind(this)} />
-          <ErrorButton />
-        </header>
-        <main>
-          <h1 className={classNames.title}>Star wars api search results</h1>
-          <Cards
-            items={this.state.items}
-            isLoaded={this.state.isLoaded}
-            count={this.state.count}
-          />
-        </main>
-      </>
-    );
-  }
-
-  async search(value: string) {
-    this.setState({ isLoaded: false });
+  const search = async (value: string) => {
+    setLoaded(false);
     let searchString = `https://swapi.dev/api/people/?page=1`;
     if (value !== null && value.trim() !== '') {
       searchString = searchString.concat(`&search=${value}`);
@@ -43,10 +21,25 @@ export default class App extends React.Component<AppProps, AppState> {
       searchString
     )) as SearchItemJsonResult | null;
     if (!fetchedItems) {
-      this.setState({ items: [], count: 0 });
+      setItems([]);
+      setCount(0);
     } else {
-      this.setState({ items: fetchedItems.results, count: fetchedItems.count });
+      setItems(fetchedItems.results);
+      setCount(fetchedItems.count);
     }
-    this.setState({ isLoaded: true });
-  }
+    setLoaded(true);
+  };
+
+  return (
+    <>
+      <header className={classNames.header}>
+        <SearchBar searchItemFn={search} />
+        <ErrorButton />
+      </header>
+      <main>
+        <h1 className={classNames.title}>Star wars api search results</h1>
+        <Cards items={items} isLoaded={loaded} count={count} />
+      </main>
+    </>
+  );
 }

@@ -1,60 +1,44 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../app/app';
 import searchIcon from '../../assets/search.svg';
 import classNames from './searchBar.module.css';
-import { SearchBarState } from './searchBarState';
 import {
   getValueByKeyFromLocalStorage,
   setValueByKeyToLocalStorage,
 } from '../../service/storageService';
 import { SearchBarProps } from './searchBarProps';
 
-export default class SearchBar extends React.Component<
-  SearchBarProps,
-  SearchBarState
-> {
-  constructor(props: SearchBarProps) {
-    super(props);
-    this.state = {
-      text: '',
-    };
-  }
+export function SearchBar(props: SearchBarProps) {
+  const [text, setText] = useState('');
 
-  render() {
-    return (
-      <section className={classNames.searchWrapper}>
-        <div className={classNames.search}>
-          <input
-            className={classNames.searchInput}
-            type="text"
-            placeholder="search"
-            value={this.state.text}
-            onChange={(e) => this.onChange(e)}
-          ></input>
-          <button
-            className={classNames.searchSubmit}
-            onClick={async () => await this.search()}
-          >
-            <img className={classNames.searchImage} src={searchIcon}></img>
-          </button>
-        </div>
-      </section>
-    );
-  }
+  const search = async () => {
+    setValueByKeyToLocalStorage(text);
+    await props.searchItemFn(text);
+  };
 
-  async search() {
-    setValueByKeyToLocalStorage(this.state.text);
-    await this.props.searchItemFn(this.state.text);
-  }
-
-  onChange(e: React.FormEvent<HTMLInputElement>) {
-    const target = e.target as HTMLInputElement;
-    this.setState({ text: target.value });
-  }
-
-  componentDidMount() {
+  useEffect(() => {
     const currentSearchTerm = getValueByKeyFromLocalStorage();
-    this.setState({ text: currentSearchTerm });
-    this.props.searchItemFn(currentSearchTerm);
-  }
+    setText(currentSearchTerm);
+    props.searchItemFn(currentSearchTerm);
+  }, []);
+
+  return (
+    <section className={classNames.searchWrapper}>
+      <div className={classNames.search}>
+        <input
+          className={classNames.searchInput}
+          type="text"
+          placeholder="search"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        ></input>
+        <button
+          className={classNames.searchSubmit}
+          onClick={async () => await search()}
+        >
+          <img className={classNames.searchImage} src={searchIcon}></img>
+        </button>
+      </div>
+    </section>
+  );
 }
