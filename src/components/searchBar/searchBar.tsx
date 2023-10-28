@@ -16,7 +16,6 @@ export default class SearchBar extends React.Component<
   constructor(props: SearchBarProps) {
     super(props);
     this.state = {
-      storageKey: 'searchValue',
       text: '',
     };
   }
@@ -44,7 +43,7 @@ export default class SearchBar extends React.Component<
   }
 
   async search() {
-    setValueByKeyToLocalStorage(this.state.storageKey, this.state.text);
+    setValueByKeyToLocalStorage(this.state.text);
     await this.props.searchItemFn(this.state.text);
   }
 
@@ -54,9 +53,7 @@ export default class SearchBar extends React.Component<
   }
 
   componentDidMount() {
-    const currentSearchTerm = getValueByKeyFromLocalStorage(
-      this.state.storageKey
-    );
+    const currentSearchTerm = getValueByKeyFromLocalStorage();
     this.setState({ text: currentSearchTerm });
     this.props.searchItemFn(currentSearchTerm);
   }
