@@ -1,4 +1,6 @@
-export default async function getFetchJson(searchTerm: string) {
+import { ApiRawResult } from '../types/searchItem';
+
+export default async function getFetchJson(searchTerm: string): Promise<ApiRawResult | null> {
   let searchString = `https://swapi.dev/api/people/?page=1`;
   if (searchTerm !== null && searchTerm.trim() !== '') {
     searchString = searchString.concat(`&search=${searchTerm}`);
