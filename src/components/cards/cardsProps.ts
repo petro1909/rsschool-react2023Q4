@@ -1,3 +1,3 @@
-import { SearchItems } from '../../types/searchItem';
+import { ApiResult } from '../../types/searchItem';
 
-export type CardsProps = SearchItems & { isLoaded: boolean };
+export type CardsProps = ApiResult & { isLoaded: boolean };

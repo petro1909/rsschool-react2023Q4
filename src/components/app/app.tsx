@@ -2,24 +2,29 @@ import React from 'react';
 import { SearchBar } from '../searchBar/searchBar';
 import { Cards } from '../../components/cards/cards';
 import getFetchJson from '../../service/fetchService';
-import { SearchItemJsonResult, SearchItem } from '../../types/searchItem';
+import { ApiResult } from '../../types/searchItem';
 import { ErrorButton } from '../error/errorButton/errorButton';
 import classNames from './app.module.css';
 
 export default function App() {
-  const [items, setItems] = React.useState<SearchItem[]>([]);
+  const [apiResult, setApiResult] = React.useState<ApiResult>({
+    totalCount: 0,
+    next: null,
+    previous: null,
+    items: [],
+  });
   const [loaded, setLoaded] = React.useState(false);
-  const [count, setCount] = React.useState(0);
 
   const search = async (searchTerm: string) => {
     setLoaded(false);
-    const fetchedItems = (await getFetchJson(searchTerm)) as SearchItemJsonResult | null;
-    if (!fetchedItems) {
-      setItems([]);
-      setCount(0);
-    } else {
-      setItems(fetchedItems.results);
-      setCount(fetchedItems.count);
+    const fetchedItems = await getFetchJson(searchTerm);
+    if (fetchedItems) {
+      setApiResult({
+        totalCount: fetchedItems.count,
+        next: fetchedItems.next,
+        previous: fetchedItems.previous,
+        items: fetchedItems.results,
+      });
     }
     setLoaded(true);
   };
@@ -32,7 +37,7 @@ export default function App() {
       </header>
       <main>
         <h1 className={classNames.title}>Star wars api search results</h1>
-        <Cards items={items} isLoaded={loaded} count={count} />
+        <Cards isLoaded={loaded} {...apiResult} />
       </main>
     </>
   );
