@@ -11,15 +11,9 @@ export default function App() {
   const [loaded, setLoaded] = React.useState(false);
   const [count, setCount] = React.useState(0);
 
-  const search = async (value: string) => {
+  const search = async (searchTerm: string) => {
     setLoaded(false);
-    let searchString = `https://swapi.dev/api/people/?page=1`;
-    if (value !== null && value.trim() !== '') {
-      searchString = searchString.concat(`&search=${value}`);
-    }
-    const fetchedItems = (await getFetchJson(
-      searchString
-    )) as SearchItemJsonResult | null;
+    const fetchedItems = (await getFetchJson(searchTerm)) as SearchItemJsonResult | null;
     if (!fetchedItems) {
       setItems([]);
       setCount(0);
