@@ -8,37 +8,33 @@ import {
 } from '../../service/storageService';
 import { SearchBarProps } from './searchBarProps';
 
-export const SearchBar = React.memo(
-  function SearchBar(props: SearchBarProps) {
-    const [text, setText] = useState('');
+export const SearchBar = React.memo(function SearchBar(props: SearchBarProps) {
+  const [text, setText] = useState('');
 
-    const search = async () => {
-      setValueByKeyToLocalStorage(text);
-      await props.searchItemFn(text);
-    };
-    console.log('124');
-    useEffect(() => {
-      const currentSearchTerm = getValueByKeyFromLocalStorage();
-      setText(currentSearchTerm);
-      props.searchItemFn(currentSearchTerm);
-    }, []);
+  const search = async () => {
+    setValueByKeyToLocalStorage(text);
+    await props.searchItemFn(text);
+  };
+  useEffect(() => {
+    const currentSearchTerm = getValueByKeyFromLocalStorage();
+    setText(currentSearchTerm);
+    props.searchItemFn(currentSearchTerm);
+  }, []);
 
-    return (
-      <section className={classNames.searchWrapper}>
-        <div className={classNames.search}>
-          <input
-            className={classNames.searchInput}
-            type="text"
-            placeholder="search"
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-          ></input>
-          <button className={classNames.searchSubmit} onClick={async () => await search()}>
-            <img className={classNames.searchImage} src={searchIcon}></img>
-          </button>
-        </div>
-      </section>
-    );
-  },
-  (a, b) => a.searchItemFn.name == b.searchItemFn.name
-);
+  return (
+    <section className={classNames.searchWrapper}>
+      <div className={classNames.search}>
+        <input
+          className={classNames.searchInput}
+          type="text"
+          placeholder="search"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        ></input>
+        <button className={classNames.searchSubmit} onClick={async () => await search()}>
+          <img className={classNames.searchImage} src={searchIcon}></img>
+        </button>
+      </div>
+    </section>
+  );
+});

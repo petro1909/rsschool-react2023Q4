@@ -15,7 +15,7 @@ export default function App() {
   });
   const [loaded, setLoaded] = React.useState(false);
 
-  const search = async (searchTerm: string) => {
+  const search = React.useCallback(async (searchTerm: string) => {
     setLoaded(false);
     const fetchedItems = await getFetchJson(searchTerm);
     if (fetchedItems) {
@@ -27,7 +27,7 @@ export default function App() {
       });
     }
     setLoaded(true);
-  };
+  }, []);
 
   return (
     <>
