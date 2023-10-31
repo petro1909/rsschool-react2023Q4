@@ -1,0 +1,27 @@
+.pages {
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.page {
+  margin: 10px;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  background-color: #242424;
+  color: rgb(255, 255, 255);
+  border: none;
+  cursor: pointer;
+}
+.page-current {
+  background-color: red;
+}
+.page-disabled {
+  opacity: 50%;
+}
