@@ -6,19 +6,19 @@ import {
   getValueByKeyFromLocalStorage,
   setValueByKeyToLocalStorage,
 } from '../../service/storageService';
-import { SearchBarProps } from './searchBarProps';
+import { SearchFnProps } from '../../types/searchFunctionProps';
 
-export const SearchBar = React.memo(function SearchBar(props: SearchBarProps) {
+export const SearchBar = React.memo(function SearchBar(props: SearchFnProps) {
   const [text, setText] = useState('');
 
   const search = async () => {
     setValueByKeyToLocalStorage(text);
-    await props.searchItemFn(text);
+    await props.searchFn();
   };
   useEffect(() => {
     const currentSearchTerm = getValueByKeyFromLocalStorage();
     setText(currentSearchTerm);
-    props.searchItemFn(currentSearchTerm);
+    props.searchFn();
   }, []);
 
   return (
@@ -30,7 +30,7 @@ export const SearchBar = React.memo(function SearchBar(props: SearchBarProps) {
           placeholder="search"
           value={text}
           onChange={(e) => setText(e.target.value)}
-        ></input>
+        />
         <button className={classNames.searchSubmit} onClick={async () => await search()}>
           <img className={classNames.searchImage} src={searchIcon}></img>
         </button>

@@ -1,3 +1,3 @@
 export type SearchFnProps = {
-  searchFn: (text: string, page?: number) => Promise<void>;
+  searchFn: (page?: number, pageSize?: number) => Promise<void>;
 };
