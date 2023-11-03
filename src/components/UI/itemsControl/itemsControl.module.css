@@ -1,0 +1,10 @@
+.items-number {
+  margin: 10px;
+}
+
+.items-number-total,
+.items-number-page {
+  font-size: 20px;
+  margin: 10px;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
