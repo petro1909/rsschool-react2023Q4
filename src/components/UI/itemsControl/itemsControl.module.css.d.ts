@@ -1,6 +1,4 @@
 declare const classNames: {
-  readonly itemsNumber: 'itemsNumber';
-  readonly itemsNumberTotal: 'itemsNumberTotal';
-  readonly itemsNumberPage: 'itemsNumberPage';
+  readonly itemsControl: 'itemsControl';
 };
 export = classNames;

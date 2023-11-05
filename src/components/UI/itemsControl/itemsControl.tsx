@@ -1,29 +1,15 @@
-import { useEffect, useState } from 'react';
-import { Pagination } from '../pagination/pagination';
+import { Pagination } from './pagination/pagination';
 import classNames from './itemsControl.module.css';
 import { ItemsControlProps } from './itemsControlProps';
+import { TotalCount } from './totalCount/totalCount';
+import { PageSizeForm } from './pageSizeForm/pageSizeForm';
 
 export function ItemsControl(props: ItemsControlProps) {
-  const [pageSize, setPageSize] = useState(0);
-
-  const setPageItemsCount = async () => {
-    await props.searchFn(1, pageSize);
-  };
-
-  useEffect(() => {
-    setPageSize(props.resultsConfig.pageSize);
-  }, []);
-
   return (
-    <section>
-      <p className={classNames.itemsNumberTotal}>Total results: {props.resultsConfig.totalCount}</p>
-      <section className={classNames.itemsNumberPage}>
-        <span>Results on page:</span>
-        <input type="number" value={pageSize} onChange={(e) => setPageSize(+e.target.value)} />
-        <button onClick={setPageItemsCount}>Set</button>
-      </section>
-
-      <Pagination searchFn={props.searchFn} resultsConfig={props.resultsConfig} />
+    <section className={classNames.itemsControl}>
+      <TotalCount count={props.resultsConfig.totalCount} />
+      <PageSizeForm pageSize={props.resultsConfig.pageSize} />
+      <Pagination resultsConfig={props.resultsConfig} />
     </section>
   );
 }
