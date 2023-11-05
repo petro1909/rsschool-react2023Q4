@@ -1,40 +1,39 @@
-import React, { useEffect, useState } from 'react';
-import '../app/app';
+import React, { ChangeEvent, useEffect, useState } from 'react';
+import { getValueByKeyFromLocalStorage } from '../../service/storageService';
+import { CustomForm } from '../UI/customForm/customForm';
 import searchIcon from '../../assets/search.svg';
 import classNames from './searchBar.module.css';
-import {
-  getValueByKeyFromLocalStorage,
-  setValueByKeyToLocalStorage,
-} from '../../service/storageService';
-import { SearchFnProps } from '../../types/searchFunctionProps';
+import { useTVShowsSearchParams } from '../../hooks/useTVShowsSearchParams';
+import { useLocation } from 'react-router';
 
-export const SearchBar = React.memo(function SearchBar(props: SearchFnProps) {
+export const SearchBar = () => {
   const [text, setText] = useState('');
+  const updateTVShowsParams = useTVShowsSearchParams();
 
-  const search = async () => {
-    setValueByKeyToLocalStorage(text);
-    await props.searchFn();
-  };
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+
   useEffect(() => {
     const currentSearchTerm = getValueByKeyFromLocalStorage();
     setText(currentSearchTerm);
-    props.searchFn();
   }, []);
 
+  const search = () => {
+    const pageSizeStr = Number(queryParams.get('pageSize'));
+    const pageSize = !isNaN(pageSizeStr) ? pageSizeStr : 10;
+    updateTVShowsParams({ searchTerm: text, page: 1, pageSize: pageSize });
+  };
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setText(e.target.value);
+  };
+
   return (
-    <section className={classNames.searchWrapper}>
-      <div className={classNames.search}>
-        <input
-          className={classNames.searchInput}
-          type="text"
-          placeholder="search"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-        />
-        <button className={classNames.searchSubmit} onClick={async () => await search()}>
-          <img className={classNames.searchImage} src={searchIcon}></img>
-        </button>
-      </div>
-    </section>
+    <CustomForm
+      inputProps={{ type: 'text', placeholder: 'search', value: text, change: handleInputChange }}
+      submitProps={{ submitFn: search }}
+    >
+      <img src={searchIcon} className={classNames.searchImage}></img>
+    </CustomForm>
   );
-});
+};
