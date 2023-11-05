@@ -31,7 +31,7 @@ export class ApiService {
     const response = (await ApiService.getApiResult(
       JSON.stringify(requestBody)
     )) as GetShowsResponse;
-    return response ? response.result : null;
+    return response ? response.result : [];
   }
 
   public static async getShowsCount(searchTerm: string): Promise<number> {
