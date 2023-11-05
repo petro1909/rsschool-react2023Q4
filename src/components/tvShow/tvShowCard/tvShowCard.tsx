@@ -1,16 +1,17 @@
 import { CardProps } from './tvShowCardProps';
 import classNames from './tvShowCard.module.css';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export function Card(props: CardProps) {
-  const setSearchParams = useSearchParams()[1];
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const navigate = useNavigate();
 
   const openExtendedShowCard = () => {
-    setSearchParams((params) => {
-      params.set('detailed', `${props.item.id}`);
-      return params;
-    });
+    queryParams.set('detailed', `${props.item.id}`);
+    navigate({ search: queryParams.toString() });
   };
+
   return (
     <section className={classNames.itemWrapper} onClick={openExtendedShowCard}>
       <div className={classNames.itemImage}>
@@ -26,9 +27,7 @@ export function Card(props: CardProps) {
           <div className={classNames.itemPropertyWrapper}>
             <span className={classNames.itemPropertyName}>Rating: </span>
             <span className={classNames.itemPropertyValue}>{props.item.rating}</span>
-            <span className={classNames.itemPropertyValue}>
-              {'(Votes: ' + props.item.voted + ')'}
-            </span>
+            <span className={classNames.itemPropertyValue}>(Votes: {props.item.voted} )</span>
           </div>
         </section>
         <section>
