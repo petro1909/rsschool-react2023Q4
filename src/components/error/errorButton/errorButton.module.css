@@ -1,0 +1,12 @@
+.error-button {
+  font-size: 25px;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: #242424;
+  color: rgb(255, 255, 255);
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.error-button:hover {
+  cursor: pointer;
+}
