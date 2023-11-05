@@ -1,6 +1,7 @@
 declare const classNames: {
   readonly itemPageWrapper: 'itemPageWrapper';
   readonly overlay: 'overlay';
+  readonly loaderWrapper: 'loaderWrapper';
   readonly itemWrapper: 'itemWrapper';
   readonly closeButton: 'closeButton';
   readonly item: 'item';

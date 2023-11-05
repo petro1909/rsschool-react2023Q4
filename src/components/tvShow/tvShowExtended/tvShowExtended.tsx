@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useLayoutEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Loader } from '../../UI/loader/loader';
 
@@ -8,15 +8,17 @@ import { ApiService } from '../../../service/apiService';
 import parse from 'html-react-parser';
 import classNames from './tvShowExtended.module.css';
 import closeImage from '../../../assets/close.svg';
+import { ItemProperty } from '../../UI/itemProperty/itemProperty';
+import { ItemRatingProperty } from '../../UI/itemRatingProperty/itemRatingProperty';
 
 export function TVShowExtended() {
   const [searchParams, setSearchParams] = useSearchParams();
   const tvShowId = searchParams.get('detailed');
 
-  const [item, setItem] = React.useState<Partial<ExtendedTVShov>>({});
+  const [item, setItem] = React.useState<Partial<ExtendedTVShov> | null>(null);
   const [loaded, setLoaded] = React.useState(false);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (tvShowId) {
       search();
     }
@@ -48,67 +50,47 @@ export function TVShowExtended() {
               <img src={closeImage} onClick={() => closeExtendedShowCard()} />
             </section>
             {loaded ? (
-              <section className={classNames.item}>
-                <section className={classNames.itemTitle}>
-                  <h3>{item.title}</h3>
-                  <h3>{item.titleOriginal}</h3>
-                </section>
-                <section>
-                  <img src={item.image} alt={item.title} className={classNames.itemImage} />
-                </section>
-                <section className={classNames.itemInfo}>
-                  <p>
-                    <span>Platform:</span>
-                    <span>{item.network?.title}</span>
-                  </p>
-                  <p>
-                    <span>Country:</span>
-                    <span>{item.network?.country}</span>
-                  </p>
-                  <p>
-                    <span>Year:</span>
-                    <span>{item.year}</span>
-                  </p>
-                  <p>
-                    <span>Status:</span>
-                    <span>{item.status}</span>
-                  </p>
-                  <p>
-                    <span>Started:</span>
-                    <span>{item.started}</span>
-                  </p>
-                  <p>
-                    <span>Ended:</span>
-                    <span>{item.ended}</span>
-                  </p>
-                </section>
-                <section className={classNames.itemRatings}>
-                  <p>
-                    <span>Rating:</span>
-                    <span>{item.rating}</span>
-                    <span>{'Voted: (' + item.voted + ')'}</span>
-                  </p>
-                  <p>
-                    <span>
+              item ? (
+                <section className={classNames.item}>
+                  <section className={classNames.itemTitle}>
+                    <h3>{item.title}</h3>
+                    <h3>{item.titleOriginal}</h3>
+                  </section>
+                  <section>
+                    <img src={item.image} alt={item.title} className={classNames.itemImage} />
+                  </section>
+                  <section className={classNames.itemInfo}>
+                    <ItemProperty text="Platform:" value={item.network?.title} />
+                    <ItemProperty text="Country:" value={item.network?.country} />
+                    <ItemProperty text="Year:" value={item.year} />
+                    <ItemProperty text="Status:" value={item.status} />
+                    <ItemProperty text="Started:" value={item.started} />
+                    <ItemProperty text="Ended:" value={item.ended} />
+                  </section>
+                  <section className={classNames.itemRatings}>
+                    <ItemRatingProperty rating={item.rating} voted={item.voted}>
+                      Rating:
+                    </ItemRatingProperty>
+                    <ItemRatingProperty rating={item.imdbRating} voted={item.imdbVoted}>
                       <a href={item.imdbUrl}>Imdb rating:</a>
-                    </span>
-                    <span>{item.imdbRating}</span>
-                    <span>{'Voted: (' + item.imdbVoted + ')'}</span>
-                  </p>
-                  <p>
-                    <span>
+                    </ItemRatingProperty>
+                    <ItemRatingProperty rating={item.kinopoiskRating} voted={item.kinopoiskVoted}>
                       <a href={item.kinopoiskUrl}>KP rating:</a>
-                    </span>
-                    <span>{item.kinopoiskRating}</span>
-                    <span>{'Voted: (' + item.kinopoiskVoted + ')'}</span>
-                  </p>
+                    </ItemRatingProperty>
+                  </section>
+                  <section className={classNames.itemDescription}>
+                    <div>{parse(item.description!)}</div>
+                  </section>
                 </section>
-                <section className={classNames.itemDescription}>
-                  <p>{parse(item.description!)}</p>
-                </section>
-              </section>
+              ) : (
+                <div className={classNames.loaderWrapper}>
+                  <h1>There is no such item</h1>
+                </div>
+              )
             ) : (
-              <Loader />
+              <div className={classNames.loaderWrapper}>
+                <Loader width={200} height={200} />
+              </div>
             )}
           </section>
         </section>
