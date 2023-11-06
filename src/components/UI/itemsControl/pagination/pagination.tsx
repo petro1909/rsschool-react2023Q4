@@ -1,10 +1,14 @@
-import { PaginationProps } from './paginationProps';
 import classNames from './pagination.module.css';
 import { PaginationButton } from './paginationButton/paginationButton';
 import { useTVShowsSearchParams } from '../../../../hooks/useTVShowsSearchParams';
 import { usePagination } from '../../../../hooks/usePagination';
 import { getValueByKeyFromLocalStorage } from '../../../../service/storageService';
 import { useLocation } from 'react-router';
+import { TVShowResultsConfig } from '../../../../types/api/apiResults';
+
+export type PaginationProps = {
+  resultsConfig: TVShowResultsConfig;
+};
 
 export function Pagination(props: PaginationProps) {
   const [pageArray, pagesCount] = usePagination(

@@ -1,7 +1,11 @@
 import React from 'react';
 import { BaseProps } from '../../../types/baseProps';
 import { ErrorFallback } from '../errorFallback/errorFallback';
-import { ErrorBoundaryState } from './errorBoundaryState';
+
+type ErrorBoundaryState = {
+  error?: Error;
+  errorInfo?: React.ErrorInfo;
+};
 
 export class ErrorBoundary extends React.Component<BaseProps, ErrorBoundaryState> {
   constructor(props: BaseProps) {

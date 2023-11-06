@@ -1,5 +1,21 @@
+import { ChangeEvent } from 'react';
 import classNames from './customForm.module.css';
-import { CustomFormProps } from './customFormProps';
+
+export type CustomFormProps = {
+  inputProps: {
+    type: 'text' | 'number';
+    placeholder?: string;
+    value: string | number;
+    change: (e: ChangeEvent<HTMLInputElement>) => void;
+    additionalClasses?: string[];
+  };
+  submitProps: {
+    submitFn: () => void;
+    additionalClasses?: string[];
+  };
+  children?: React.ReactNode;
+};
+
 export function CustomForm(props: CustomFormProps) {
   const inputClassNames = [];
   inputClassNames.push(classNames.searchInput);

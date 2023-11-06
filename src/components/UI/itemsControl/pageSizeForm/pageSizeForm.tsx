@@ -2,8 +2,11 @@ import { useState, ChangeEvent, useEffect } from 'react';
 import { CustomForm } from '../../customForm/customForm';
 import classNames from './pageSizeForm.module.css';
 import { useTVShowsSearchParams } from '../../../../hooks/useTVShowsSearchParams';
-import { PageSizeFormProps } from './pageSizeFormProps';
 import { getValueByKeyFromLocalStorage } from '../../../../service/storageService';
+
+export type PageSizeFormProps = {
+  pageSize: number;
+};
 
 export function PageSizeForm(props: PageSizeFormProps) {
   const [pageSize, setPageSize] = useState(0);

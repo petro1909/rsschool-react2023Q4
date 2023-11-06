@@ -1,5 +1,9 @@
 import classNames from './totalCount.module.css';
-import { TotalCountProps } from './totalCountProps';
+
+export type TotalCountProps = {
+  count: number;
+};
+
 export function TotalCount(props: TotalCountProps) {
   return (
     <section className={classNames.itemsNumberTotal}>

@@ -1,5 +1,13 @@
+import { BaseProps } from '../../../../../types/baseProps';
 import classNames from './paginationButton.module.css';
-import { PaginationButtonProps } from './paginationButtonProps';
+
+export type PaginationButtonProps = {
+  pageNumber?: number;
+  current?: boolean;
+  disabled: boolean;
+  onClick: (pageNumber: number) => void;
+} & BaseProps;
+
 export function PaginationButton(props: PaginationButtonProps) {
   return (
     <button

@@ -1,6 +1,10 @@
 import React from 'react';
-import { ErrorFallbackProps } from './errorFallbackProps';
 import classNames from './errorFalback.module.css';
+
+type ErrorFallbackProps = {
+  error?: Error;
+  errorInfo?: React.ErrorInfo;
+};
 
 export function ErrorFallback(props: ErrorFallbackProps) {
   const splitErrorStack = (stack?: string | null): string[] => {

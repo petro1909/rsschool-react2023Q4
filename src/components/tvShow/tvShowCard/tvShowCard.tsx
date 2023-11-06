@@ -1,6 +1,10 @@
-import { CardProps } from './tvShowCardProps';
 import classNames from './tvShowCard.module.css';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { TVShow } from '../../../types/api/tvShow';
+
+export type CardProps = {
+  item: TVShow;
+};
 
 export function Card(props: CardProps) {
   const location = useLocation();

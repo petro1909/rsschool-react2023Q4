@@ -1,4 +1,7 @@
-import { ItemPropertyProps } from './itemPropertyProps';
+export type ItemPropertyProps = {
+  text: string;
+  value?: string | number;
+};
 
 export function ItemProperty(props: ItemPropertyProps) {
   return (

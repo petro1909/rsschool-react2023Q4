@@ -1,4 +1,9 @@
-import { ItemRatingPropertyProps } from './itemRatingPropertyProps';
+import { BaseProps } from '../../../types/baseProps';
+
+export type ItemRatingPropertyProps = {
+  rating?: number;
+  voted?: number;
+} & BaseProps;
 
 export function ItemRatingProperty(props: ItemRatingPropertyProps) {
   return (
