@@ -2,7 +2,7 @@ import { Pagination } from './pagination/pagination';
 import classNames from './itemsControl.module.css';
 import { TotalCount } from './totalCount/totalCount';
 import { PageSizeForm } from './pageSizeForm/pageSizeForm';
-import { TVShowResultsConfig } from '../../../types/api/apiResults';
+import { TVShowResultsConfig } from '@app_types/api/apiResults';
 
 export type ItemsControlProps = {
   resultsConfig: TVShowResultsConfig;

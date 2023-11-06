@@ -1,9 +1,8 @@
-import React from 'react';
-import { ErrorButton } from '../../components/error/errorButton/errorButton';
-import { SearchBar } from '../../components/searchBar/searchBar';
 import { Outlet } from 'react-router-dom';
+import { ErrorButton } from '@components/error/errorButton/errorButton';
+import { SearchBar } from '@components/searchBar/searchBar';
+import { TVShows } from '@components/tvShow/tvShows/tvShows';
 import classNames from './main.module.css';
-import { TVShows } from '../../components/tvShow/tvShows/tvShows';
 
 export default function Main() {
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
-import { BaseProps } from '../../../types/baseProps';
-import { ErrorFallback } from '../errorFallback/errorFallback';
+import { BaseProps } from '@app_types/baseProps';
+import { ErrorFallback } from '@components/error/errorFallback/errorFallback';
 
 type ErrorBoundaryState = {
   error?: Error;

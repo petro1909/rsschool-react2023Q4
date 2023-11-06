@@ -1,6 +1,6 @@
-import classNames from './tvShowCard.module.css';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { TVShow } from '../../../types/api/tvShow';
+import { TVShow } from '@app_types/api/tvShow';
+import classNames from './tvShowCard.module.css';
 
 export type CardProps = {
   item: TVShow;

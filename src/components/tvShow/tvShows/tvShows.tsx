@@ -1,11 +1,11 @@
-import { ItemsControl } from '../../UI/itemsControl/itemsControl';
-import { TVShowList } from '../tvShowList/tvShowList';
-import { useTVShowSearch } from '../../../hooks/useTVShowSearch';
 import React, { useEffect } from 'react';
-import { getValueByKeyFromLocalStorage } from '../../../service/storageService';
 import { useLocation } from 'react-router-dom';
-import { TVShowResults } from '../../../types/api/apiResults';
-import { Loader } from '../../UI/loader/loader';
+import { ItemsControl } from '@components/UI/itemsControl/itemsControl';
+import { TVShowList } from '@components/tvShow/tvShowList/tvShowList';
+import { Loader } from '@components/UI/loader/loader';
+import { useTVShowSearch } from '@hooks/useTVShowSearch';
+import { getValueByKeyFromLocalStorage } from '@service/storageService';
+import { TVShowResults } from '@app_types/api/apiResults';
 import classNames from './tvShows.module.css';
 
 export function TVShows() {

@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
-import { setValueByKeyToLocalStorage } from '../service/storageService';
-import { TVShowsSearchProps } from '../types/tvshowSearchProps';
+import { setValueByKeyToLocalStorage } from '@service/storageService';
+import { TVShowsSearchProps } from '@app_types/tvshowSearchProps';
 
 export function useTVShowsSearchParams() {
   const setQeryParams = useSearchParams()[1];

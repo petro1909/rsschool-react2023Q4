@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
-import { getValueByKeyFromLocalStorage } from '../service/storageService';
-import { ApiService } from '../service/apiService';
-import { TVShowResults } from '../types/api/apiResults';
+import { getValueByKeyFromLocalStorage } from '@service/storageService';
+import { ApiService } from '@service/apiService';
+import { TVShowResults } from '@app_types/api/apiResults';
 
 export function useTVShowSearch() {
   const location = useLocation();

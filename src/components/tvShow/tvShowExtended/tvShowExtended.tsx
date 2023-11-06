@@ -1,15 +1,13 @@
 import React, { useLayoutEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Loader } from '../../UI/loader/loader';
-
-import { ExtendedTVShov } from '../../../types/api/tvShow';
-import { ApiService } from '../../../service/apiService';
-
 import parse from 'html-react-parser';
+import { Loader } from '@components/UI/loader/loader';
+import { ExtendedTVShov } from '@app_types/api/tvShow';
+import { ApiService } from '@service/apiService';
+import { ItemProperty } from '@components/UI/itemProperty/itemProperty';
+import { ItemRatingProperty } from '@components/UI/itemRatingProperty/itemRatingProperty';
 import classNames from './tvShowExtended.module.css';
-import closeImage from '../../../assets/close.svg';
-import { ItemProperty } from '../../UI/itemProperty/itemProperty';
-import { ItemRatingProperty } from '../../UI/itemRatingProperty/itemRatingProperty';
+import closeImage from '@assets/close.svg';
 
 export function TVShowExtended() {
   const [searchParams, setSearchParams] = useSearchParams();

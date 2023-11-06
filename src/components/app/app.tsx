@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Main from '../../page/main/main';
-import { About } from '../../page/about/about';
-import { NotFound } from '../../page/notFound/notFound';
-import { TVShowExtended } from '../tvShow/tvShowExtended/tvShowExtended';
+import Main from '@page/main/main';
+import { About } from '@page/about/about';
+import { NotFound } from '@page/notFound/notFound';
+import { TVShowExtended } from '@components/tvShow/tvShowExtended/tvShowExtended';
 
 export default function App() {
   return (

@@ -1,4 +1,4 @@
-import { BaseProps } from '../../../../../types/baseProps';
+import { BaseProps } from '@app_types/baseProps';
 import classNames from './paginationButton.module.css';
 
 export type PaginationButtonProps = {

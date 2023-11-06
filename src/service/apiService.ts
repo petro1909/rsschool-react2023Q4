@@ -1,7 +1,10 @@
-import { ApiBaseRequest } from '../types/api/apiBaseRequest';
-import { GetShowByIdRequestParams, GetShowByIdResponse } from '../types/api/getShowById';
-import { GetShowsRequestParams, GetShowsResponse } from '../types/api/getShows';
-import { GetShowsCountRequestParameters, GetShowsCountResponse } from '../types/api/getShowsCount';
+import { ApiBaseRequest } from '@app_types/api/apiBaseRequest';
+import { GetShowByIdRequestParams, GetShowByIdResponse } from '@app_types//api/getShowById';
+import { GetShowsRequestParams, GetShowsResponse } from '@app_types//api/getShows';
+import {
+  GetShowsCountRequestParameters,
+  GetShowsCountResponse,
+} from '@app_types//api/getShowsCount';
 
 export class ApiService {
   private static baseURL = 'https://api.myshows.me/v2/rpc/';

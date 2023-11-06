@@ -1,10 +1,10 @@
-import classNames from './pagination.module.css';
-import { PaginationButton } from './paginationButton/paginationButton';
-import { useTVShowsSearchParams } from '../../../../hooks/useTVShowsSearchParams';
-import { usePagination } from '../../../../hooks/usePagination';
-import { getValueByKeyFromLocalStorage } from '../../../../service/storageService';
 import { useLocation } from 'react-router';
-import { TVShowResultsConfig } from '../../../../types/api/apiResults';
+import { PaginationButton } from './paginationButton/paginationButton';
+import { useTVShowsSearchParams } from '@hooks/useTVShowsSearchParams';
+import { usePagination } from '@hooks/usePagination';
+import { getValueByKeyFromLocalStorage } from '@service/storageService';
+import { TVShowResultsConfig } from '@app_types/api/apiResults';
+import classNames from './pagination.module.css';
 
 export type PaginationProps = {
   resultsConfig: TVShowResultsConfig;

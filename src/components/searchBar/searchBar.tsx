@@ -1,10 +1,10 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
-import { getValueByKeyFromLocalStorage } from '../../service/storageService';
-import { CustomForm } from '../UI/customForm/customForm';
-import searchIcon from '../../assets/search.svg';
-import classNames from './searchBar.module.css';
-import { useTVShowsSearchParams } from '../../hooks/useTVShowsSearchParams';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
+import { getValueByKeyFromLocalStorage } from '@service/storageService';
+import { CustomForm } from '@components/UI/customForm/customForm';
+import searchIcon from '@assets/search.svg';
+import { useTVShowsSearchParams } from '@hooks/useTVShowsSearchParams';
+import classNames from './searchBar.module.css';
 
 export const SearchBar = () => {
   const [text, setText] = useState('');
