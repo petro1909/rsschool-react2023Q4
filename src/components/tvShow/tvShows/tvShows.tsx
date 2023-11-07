@@ -32,23 +32,18 @@ export function TVShows() {
     });
   }, [searchQuery, queryParams.get('page'), queryParams.get('pageSize')]);
 
+  if (!loaded) {
+    return <Loader />;
+  }
+
+  if (searchResult.items?.length <= 0) {
+    return <div className={classNames.emptyItems}>Nothing was found for the specified request</div>;
+  }
+
   return (
     <>
-      {loaded ? (
-        <>
-          {searchResult?.items?.length > 0 ? (
-            <>
-              <ItemsControl resultsConfig={searchResult.config} />
-              <TVShowList items={searchResult.items} />
-              <ItemsControl resultsConfig={searchResult.config} />
-            </>
-          ) : (
-            <div className={classNames.emptyItems}>Nothing was found for the specified request</div>
-          )}
-        </>
-      ) : (
-        <Loader />
-      )}
+      <TVShowList items={searchResult.items} />
+      <ItemsControl resultsConfig={searchResult.config} />
     </>
   );
 }

@@ -7,16 +7,17 @@ import { ApiService } from '@service/apiService';
 import { ItemProperty } from '@components/UI/itemProperty/itemProperty';
 import { ItemRatingProperty } from '@components/UI/itemRatingProperty/itemRatingProperty';
 import classNames from './tvShowExtended.module.css';
-import closeImage from '@assets/close.svg';
+import { TVShowExtendedWrapper } from './tvShowExtendedWrapper';
 
 export function TVShowExtended() {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const tvShowId = searchParams.get('detailed');
 
   const [item, setItem] = React.useState<Partial<ExtendedTVShov> | null>(null);
   const [loaded, setLoaded] = React.useState(false);
 
   useLayoutEffect(() => {
+    console.log(item);
     if (tvShowId) {
       search();
     }
@@ -31,70 +32,59 @@ export function TVShowExtended() {
     setLoaded(true);
   };
 
-  const closeExtendedShowCard = () => {
-    setSearchParams((params) => {
-      params.delete('detailed');
-      return params;
-    });
-  };
-
-  return (
-    <section>
-      {tvShowId ? (
-        <section className={classNames.itemPageWrapper}>
-          <section className={classNames.overlay} onClick={() => closeExtendedShowCard()}></section>
-          <section className={classNames.itemWrapper}>
-            <section className={classNames.closeButton}>
-              <img src={closeImage} onClick={() => closeExtendedShowCard()} />
-            </section>
-            {loaded ? (
-              item ? (
-                <section className={classNames.item}>
-                  <section className={classNames.itemTitle}>
-                    <h3>{item.title}</h3>
-                    <h3>{item.titleOriginal}</h3>
-                  </section>
-                  <section>
-                    <img src={item.image} alt={item.title} className={classNames.itemImage} />
-                  </section>
-                  <section className={classNames.itemInfo}>
-                    <ItemProperty text="Platform:" value={item.network?.title} />
-                    <ItemProperty text="Country:" value={item.network?.country} />
-                    <ItemProperty text="Year:" value={item.year} />
-                    <ItemProperty text="Status:" value={item.status} />
-                    <ItemProperty text="Started:" value={item.started} />
-                    <ItemProperty text="Ended:" value={item.ended} />
-                  </section>
-                  <section className={classNames.itemRatings}>
-                    <ItemRatingProperty rating={item.rating} voted={item.voted}>
-                      Rating:
-                    </ItemRatingProperty>
-                    <ItemRatingProperty rating={item.imdbRating} voted={item.imdbVoted}>
-                      <a href={item.imdbUrl}>Imdb rating:</a>
-                    </ItemRatingProperty>
-                    <ItemRatingProperty rating={item.kinopoiskRating} voted={item.kinopoiskVoted}>
-                      <a href={item.kinopoiskUrl}>KP rating:</a>
-                    </ItemRatingProperty>
-                  </section>
-                  <section className={classNames.itemDescription}>
-                    <div>{parse(item.description!)}</div>
-                  </section>
-                </section>
-              ) : (
-                <div className={classNames.loaderWrapper}>
-                  <h1>There is no such item</h1>
-                </div>
-              )
-            ) : (
-              <div className={classNames.loaderWrapper}>
-                <Loader width={200} height={200} />
-              </div>
-            )}
+  if (!tvShowId) return null;
+  if (!loaded) {
+    return (
+      <TVShowExtendedWrapper>
+        <div className={classNames.loaderWrapper}>
+          <Loader width={200} height={200} />
+        </div>
+      </TVShowExtendedWrapper>
+    );
+  }
+  if (!item) {
+    return (
+      <TVShowExtendedWrapper>
+        <div className={classNames.loaderWrapper}>
+          <h1>There is no such item</h1>
+        </div>
+      </TVShowExtendedWrapper>
+    );
+  } else {
+    return (
+      <TVShowExtendedWrapper>
+        <section className={classNames.item}>
+          <section className={classNames.itemTitle}>
+            <h3>{item.title}</h3>
+            <h3>{item.titleOriginal}</h3>
+          </section>
+          <section>
+            <img src={item.image} alt={item.title} className={classNames.itemImage} />
+          </section>
+          <section className={classNames.itemInfo}>
+            <ItemProperty text="Platform:" value={item.network?.title} />
+            <ItemProperty text="Country:" value={item.network?.country} />
+            <ItemProperty text="Year:" value={item.year} />
+            <ItemProperty text="Status:" value={item.status} />
+            <ItemProperty text="Started:" value={item.started} />
+            <ItemProperty text="Ended:" value={item.ended} />
+          </section>
+          <section className={classNames.itemRatings}>
+            <ItemRatingProperty rating={item.rating} voted={item.voted}>
+              Rating:
+            </ItemRatingProperty>
+            <ItemRatingProperty rating={item.imdbRating} voted={item.imdbVoted}>
+              <a href={item.imdbUrl}>Imdb rating:</a>
+            </ItemRatingProperty>
+            <ItemRatingProperty rating={item.kinopoiskRating} voted={item.kinopoiskVoted}>
+              <a href={item.kinopoiskUrl}>KP rating:</a>
+            </ItemRatingProperty>
+          </section>
+          <section className={classNames.itemDescription}>
+            <div>{parse(item.description!)}</div>
           </section>
         </section>
-      ) : (
-        <></>
-      )}
-    </section>
-  );
+      </TVShowExtendedWrapper>
+    );
+  }
 }
