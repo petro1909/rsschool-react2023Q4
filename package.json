@@ -38,8 +38,8 @@
     "lint-staged": "^12.4.1",
     "prettier": "^2.6.2",
     "typescript": "^4.9.3",
-    "vite": "^4.1.0",
-    "vite-plugin-sass-dts": "^1.3.11"
+    "typescript-plugin-css-modules": "^5.0.2",
+    "vite": "^4.1.0"
   },
   "lint-staged": {
     "*.{tsx,ts}": "npm run stagedLint"

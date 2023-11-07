@@ -24,7 +24,15 @@
       "@page/*": ["./page/*"],
       "@components/*": ["./components/*"],
       "@assets/*": ["./assets/*"],
-    }
+    },
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules",
+        "options": {
+          "classnameTransform": "camelCaseOnly"
+        }
+      }
+    ]
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }],

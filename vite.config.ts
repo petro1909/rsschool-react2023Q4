@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import sassDts from 'vite-plugin-sass-dts';
 import path from 'path';
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -9,7 +8,7 @@ export default defineConfig({
       localsConvention: 'camelCaseOnly',
     },
   },
-  plugins: [react(), sassDts()],
+  plugins: [react()],
   resolve: {
     alias: {
       '@app_types': path.resolve(__dirname, './src/types'),
