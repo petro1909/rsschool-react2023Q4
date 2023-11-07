@@ -3,15 +3,15 @@ export type ItemPropertyProps = {
   value?: string | number;
 };
 
-export function ItemProperty(props: ItemPropertyProps) {
+export function ItemProperty({ text, value }: ItemPropertyProps) {
   return (
     <>
-      props.value && (
-      <p>
-        <span>{props.text}</span>
-        <span>{props.value}</span>
-      </p>
-      )
+      {value && (
+        <p>
+          <span>{text}</span>
+          <span>{value}</span>
+        </p>
+      )}
     </>
   );
 }

@@ -6,46 +6,46 @@ export type CardProps = {
   item: TVShow;
 };
 
-export function Card(props: CardProps) {
+export function Card({ item }: CardProps) {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const navigate = useNavigate();
 
   const openExtendedShowCard = () => {
-    queryParams.set('detailed', `${props.item.id}`);
+    queryParams.set('detailed', `${item.id}`);
     navigate({ search: queryParams.toString() });
   };
 
   return (
     <section className={classNames.itemWrapper} onClick={openExtendedShowCard}>
       <div className={classNames.itemImage}>
-        <img src={props.item.image}></img>
+        <img src={item.image}></img>
       </div>
       <div className={classNames.itemInfo}>
         <section>
-          <h3 className={classNames.itemHeader}>{props.item.title}</h3>
-          <h3 className={classNames.itemHeader}>{props.item.titleOriginal}</h3>
+          <h3 className={classNames.itemHeader}>{item.title}</h3>
+          <h3 className={classNames.itemHeader}>{item.titleOriginal}</h3>
         </section>
         <hr />
         <section>
           <div className={classNames.itemPropertyWrapper}>
             <span className={classNames.itemPropertyName}>Rating: </span>
-            <span className={classNames.itemPropertyValue}>{props.item.rating}</span>
-            <span className={classNames.itemPropertyValue}>(Votes: {props.item.voted} )</span>
+            <span className={classNames.itemPropertyValue}>{item.rating}</span>
+            <span className={classNames.itemPropertyValue}>(Votes: {item.voted} )</span>
           </div>
         </section>
         <section>
           <div className={classNames.itemPropertyWrapper}>
             <span className={classNames.itemPropertyName}>Status: </span>
-            <span className={classNames.itemPropertyValue}>{props.item.status}</span>
+            <span className={classNames.itemPropertyValue}>{item.status}</span>
           </div>
           <div className={classNames.itemPropertyWrapper}>
             <span className={classNames.itemPropertyName}>Total Seasons: </span>
-            <span className={classNames.itemPropertyValue}>{props.item.totalSeasons}</span>
+            <span className={classNames.itemPropertyValue}>{item.totalSeasons}</span>
           </div>
           <div className={classNames.itemPropertyWrapper}>
             <span className={classNames.itemPropertyName}>Year: </span>
-            <span className={classNames.itemPropertyValue}>{props.item.year}</span>
+            <span className={classNames.itemPropertyValue}>{item.year}</span>
           </div>
         </section>
       </div>

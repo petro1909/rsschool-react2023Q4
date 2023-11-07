@@ -8,16 +8,22 @@ export type PaginationButtonProps = {
   onClick: (pageNumber: number) => void;
 } & BaseProps;
 
-export function PaginationButton(props: PaginationButtonProps) {
+export function PaginationButton({
+  pageNumber,
+  current,
+  disabled,
+  onClick,
+  children,
+}: PaginationButtonProps) {
   return (
     <button
-      disabled={props.disabled}
-      className={`${classNames.page} ${props.current ? classNames.pageCurrent : ''} ${
-        props.disabled ? classNames.pageDisabled : ''
+      disabled={disabled}
+      className={`${classNames.page} ${current ? classNames.pageCurrent : ''} ${
+        disabled ? classNames.pageDisabled : ''
       }`}
-      onClick={() => props.onClick(props.pageNumber!)}
+      onClick={() => onClick(pageNumber!)}
     >
-      {props.children}
+      {children}
     </button>
   );
 }

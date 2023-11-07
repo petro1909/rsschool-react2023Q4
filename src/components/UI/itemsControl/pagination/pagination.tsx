@@ -10,11 +10,11 @@ export type PaginationProps = {
   resultsConfig: TVShowResultsConfig;
 };
 
-export function Pagination(props: PaginationProps) {
+export function Pagination({ resultsConfig }: PaginationProps) {
   const [pageArray, pagesCount] = usePagination(
-    props.resultsConfig.totalCount,
-    props.resultsConfig.currentPage,
-    props.resultsConfig.pageSize
+    resultsConfig.totalCount,
+    resultsConfig.currentPage,
+    resultsConfig.pageSize
   );
   const updateTVShowsParams = useTVShowsSearchParams();
   const location = useLocation();
@@ -29,9 +29,9 @@ export function Pagination(props: PaginationProps) {
   return (
     <section className={classNames.pages}>
       <PaginationButton
-        disabled={props.resultsConfig.currentPage == 1}
+        disabled={resultsConfig.currentPage == 1}
         onClick={search}
-        pageNumber={props.resultsConfig.currentPage - 1}
+        pageNumber={resultsConfig.currentPage - 1}
         key={'prev'}
       >
         &#x2BC7;
@@ -44,19 +44,19 @@ export function Pagination(props: PaginationProps) {
         ) : (
           <PaginationButton
             key={page}
-            disabled={props.resultsConfig.currentPage == page}
+            disabled={resultsConfig.currentPage == page}
             onClick={search}
             pageNumber={page}
-            current={props.resultsConfig.currentPage == page}
+            current={resultsConfig.currentPage == page}
           >
             {page}
           </PaginationButton>
         )
       )}
       <PaginationButton
-        disabled={props.resultsConfig.currentPage == pagesCount}
+        disabled={resultsConfig.currentPage == pagesCount}
         onClick={search}
-        pageNumber={props.resultsConfig.currentPage + 1}
+        pageNumber={resultsConfig.currentPage + 1}
         key={'next'}
       >
         &#x2BC8;

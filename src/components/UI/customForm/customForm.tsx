@@ -16,27 +16,27 @@ export type CustomFormProps = {
   children?: React.ReactNode;
 };
 
-export function CustomForm(props: CustomFormProps) {
+export function CustomForm({ inputProps, submitProps, children }: CustomFormProps) {
   const inputClassNames = [];
   inputClassNames.push(classNames.searchInput);
 
-  if (props.inputProps.additionalClasses) {
-    inputClassNames.push(...props.inputProps.additionalClasses);
+  if (inputProps.additionalClasses) {
+    inputClassNames.push(...inputProps.additionalClasses);
   }
   return (
     <section className={classNames.search}>
       <input
         className={inputClassNames.join(' ')}
-        type={props.inputProps.type}
-        placeholder={props.inputProps.placeholder}
-        value={props.inputProps.value}
-        onChange={props.inputProps.change}
+        type={inputProps.type}
+        placeholder={inputProps.placeholder}
+        value={inputProps.value}
+        onChange={inputProps.change}
       />
       <button
         className={classNames.searchSubmit}
-        onClick={async () => await props.submitProps.submitFn()}
+        onClick={async () => await submitProps.submitFn()}
       >
-        {props.children}
+        {children}
       </button>
     </section>
   );

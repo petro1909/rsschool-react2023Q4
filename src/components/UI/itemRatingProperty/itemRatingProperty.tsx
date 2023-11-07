@@ -5,14 +5,14 @@ export type ItemRatingPropertyProps = {
   voted?: number;
 } & BaseProps;
 
-export function ItemRatingProperty(props: ItemRatingPropertyProps) {
+export function ItemRatingProperty({ rating, voted, children }: ItemRatingPropertyProps) {
   return (
     <>
-      {props.rating && (
+      {rating && (
         <p>
-          <span>{props.children}</span>
-          <span>{props.rating}</span>
-          <span>Voted: ({props.voted})</span>
+          <span>{children}</span>
+          <span>{rating}</span>
+          <span>Voted: ({voted})</span>
         </p>
       )}
     </>

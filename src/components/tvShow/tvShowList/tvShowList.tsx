@@ -6,10 +6,10 @@ export type TVShowListProps = {
   items: Array<TVShow>;
 };
 
-export function TVShowList(props: TVShowListProps) {
+export function TVShowList({ items }: TVShowListProps) {
   return (
     <section className={classNames.itemsWrapper}>
-      {props.items.map((item, index) => (
+      {items.map((item, index) => (
         <Card key={index} item={item} />
       ))}
     </section>

@@ -8,12 +8,12 @@ export type ItemsControlProps = {
   resultsConfig: TVShowResultsConfig;
 };
 
-export function ItemsControl(props: ItemsControlProps) {
+export function ItemsControl({ resultsConfig }: ItemsControlProps) {
   return (
     <section className={classNames.itemsControl}>
-      <TotalCount count={props.resultsConfig.totalCount} />
-      <PageSizeForm pageSize={props.resultsConfig.pageSize} />
-      <Pagination resultsConfig={props.resultsConfig} />
+      <TotalCount count={resultsConfig.totalCount} />
+      <PageSizeForm pageSize={resultsConfig.pageSize} />
+      <Pagination resultsConfig={resultsConfig} />
     </section>
   );
 }

@@ -4,10 +4,10 @@ export type TotalCountProps = {
   count: number;
 };
 
-export function TotalCount(props: TotalCountProps) {
+export function TotalCount({ count }: TotalCountProps) {
   return (
     <section className={classNames.itemsNumberTotal}>
-      <span>Total results: {props.count}</span>
+      <span>Total results: {count}</span>
     </section>
   );
 }
