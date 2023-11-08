@@ -10,8 +10,8 @@ export type TVShow = {
   rating: number;
   images: Array<string>;
   image: string;
-  onlineCount: string;
-  promoUrl: string;
+  onlineCount: string | null;
+  promoUrl: string | null;
   category: string;
 };
 
