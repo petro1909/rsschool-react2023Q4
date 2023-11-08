@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { TVShow } from '@app_types/api/tvShow';
 import classNames from './tvShowCard.module.css';
 
@@ -6,14 +6,14 @@ export type CardProps = {
   item: TVShow;
 };
 
-export function Card({ item }: CardProps) {
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const navigate = useNavigate();
+export function TVShowCard({ item }: CardProps) {
+  const [, setSearchParams] = useSearchParams();
 
   const openExtendedShowCard = () => {
-    queryParams.set('detailed', `${item.id}`);
-    navigate({ search: queryParams.toString() });
+    setSearchParams((params) => {
+      params.set('detailed', `${item.id}`);
+      return params;
+    });
   };
 
   return (
