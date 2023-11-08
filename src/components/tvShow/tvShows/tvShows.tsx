@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { createContext, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { ItemsControl } from '@components/UI/itemsControl/itemsControl';
 import { TVShowList } from '@components/tvShow/tvShowList/tvShowList';
@@ -7,6 +7,9 @@ import { useTVShowSearch } from '@hooks/useTVShowSearch';
 import { getValueByKeyFromLocalStorage } from '@service/storageService';
 import { TVShowResults } from '@app_types/api/apiResults';
 import classNames from './tvShows.module.css';
+import { TVShow } from '@app_types/api/tvShow';
+
+export const TVShowsContext = createContext<TVShow[]>([]);
 
 export function TVShows() {
   const [searchResult, setSearchResult] = React.useState<TVShowResults>({
@@ -41,9 +44,9 @@ export function TVShows() {
   }
 
   return (
-    <>
-      <TVShowList items={searchResult.items} />
+    <TVShowsContext.Provider value={searchResult.items}>
+      <TVShowList />
       <ItemsControl resultsConfig={searchResult.config} />
-    </>
+    </TVShowsContext.Provider>
   );
 }

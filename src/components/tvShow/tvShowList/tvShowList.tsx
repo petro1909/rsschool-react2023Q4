@@ -1,16 +1,14 @@
-import { Card } from '@components/tvShow/tvShowCard/tvShowCard';
-import { TVShow } from '@app_types/api/tvShow';
+import { TVShowCard } from '@components/tvShow/tvShowCard/tvShowCard';
 import classNames from './tvShowList.module.css';
+import { useContext } from 'react';
+import { TVShowsContext } from '../tvShows/tvShows';
 
-export type TVShowListProps = {
-  items: Array<TVShow>;
-};
-
-export function TVShowList({ items }: TVShowListProps) {
+export function TVShowList() {
+  const items = useContext(TVShowsContext);
   return (
     <section className={classNames.itemsWrapper}>
       {items.map((item, index) => (
-        <Card key={index} item={item} />
+        <TVShowCard key={index} item={item} />
       ))}
     </section>
   );
