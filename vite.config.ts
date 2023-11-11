@@ -1,4 +1,5 @@
-/// <reference types="vitest" />
+/// <reference types='vitest'/>
+/// <reference types='vite/client'/>
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
@@ -23,11 +24,12 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
-    setupFiles: ['./vite.config.ts'],
+    setupFiles: ['vitest.setup.ts'],
     coverage: {
       provider: 'v8',
       all: true,
       reporter: 'text',
+      exclude: ['src/types/*', 'src/main.tsx', 'src/vite-env.d.ts'],
     },
   },
 });
