@@ -15,7 +15,7 @@ export type TVShow = {
   category: string;
 };
 
-export type ExtendedTVShov = TVShow & TVShovAdditionalInfo;
+export type ExtendedTVShov = Partial<TVShow & TVShovAdditionalInfo>;
 
 type TVShovAdditionalInfo = {
   description: string;
