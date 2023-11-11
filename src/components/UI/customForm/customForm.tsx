@@ -31,8 +31,10 @@ export function CustomForm({ inputProps, submitProps, children }: CustomFormProp
         placeholder={inputProps.placeholder}
         value={inputProps.value}
         onChange={inputProps.change}
+        data-testid={'input'}
       />
       <button
+        data-testid={'submit'}
         className={classNames.searchSubmit}
         onClick={async () => await submitProps.submitFn()}
       >

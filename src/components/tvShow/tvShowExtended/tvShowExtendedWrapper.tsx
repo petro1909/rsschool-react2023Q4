@@ -15,8 +15,12 @@ export function TVShowExtendedWrapper(props: TVShowExtendedWrapperProps) {
   };
 
   return (
-    <section className={classNames.itemPageWrapper}>
-      <section className={classNames.overlay} onClick={() => closeExtendedShowCard()}></section>
+    <section className={classNames.itemPageWrapper} data-testid={'detailed_card'}>
+      <section
+        data-testid={'close_card'}
+        className={classNames.overlay}
+        onClick={() => closeExtendedShowCard()}
+      ></section>
       <section className={classNames.itemWrapper}>
         <section className={classNames.closeButton}>
           <img src={closeImage} onClick={() => closeExtendedShowCard()} />

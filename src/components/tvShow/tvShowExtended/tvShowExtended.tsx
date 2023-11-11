@@ -13,7 +13,7 @@ export function TVShowExtended() {
   const [searchParams] = useSearchParams();
   const tvShowId = searchParams.get('detailed');
 
-  const [item, setItem] = React.useState<Partial<ExtendedTVShov> | null>(null);
+  const [item, setItem] = React.useState<ExtendedTVShov | null>(null);
   const [loaded, setLoaded] = React.useState(false);
 
   useLayoutEffect(() => {
@@ -81,7 +81,7 @@ export function TVShowExtended() {
             </ItemRatingProperty>
           </section>
           <section className={classNames.itemDescription}>
-            <div>{parse(item.description!)}</div>
+            <div>{item.description && parse(item.description!)}</div>
           </section>
         </section>
       </TVShowExtendedWrapper>

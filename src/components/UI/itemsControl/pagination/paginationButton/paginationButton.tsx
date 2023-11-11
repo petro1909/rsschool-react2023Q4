@@ -17,6 +17,7 @@ export function PaginationButton({
 }: PaginationButtonProps) {
   return (
     <button
+      data-testid={children}
       disabled={disabled}
       className={`${classNames.page} ${current ? classNames.pageCurrent : ''} ${
         disabled ? classNames.pageDisabled : ''

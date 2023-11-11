@@ -40,7 +40,11 @@ export function TVShows() {
   }
 
   if (searchResult.items?.length <= 0) {
-    return <div className={classNames.emptyItems}>Nothing was found for the specified request</div>;
+    return (
+      <div className={classNames.emptyItems} data-testid="no-items">
+        Nothing was found for the specified request
+      </div>
+    );
   }
 
   return (
