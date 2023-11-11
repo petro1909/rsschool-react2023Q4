@@ -1,4 +1,4 @@
-const storageKey = 'searchValue';
+export const storageKey = 'searchValue';
 
 export function getValueByKeyFromLocalStorage(): string {
   const value = localStorage.getItem(storageKey);
