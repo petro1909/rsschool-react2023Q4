@@ -16,14 +16,15 @@
     "noImplicitAny": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "baseUrl": "./src",
+    "baseUrl": "./",
     "paths": {
-      "@app_types/*": ["./types/*"],
-      "@hooks/*": ["./hooks/*"],
-      "@service/*": ["./service/*"],
-      "@page/*": ["./page/*"],
-      "@components/*": ["./components/*"],
-      "@assets/*": ["./assets/*"],
+      "@app_types/*": ["./src/types/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@service/*": ["./src/service/*"],
+      "@page/*": ["./src/page/*"],
+      "@components/*": ["./src/components/*"],
+      "@assets/*": ["./src/assets/*"],
+      "@test/*":["./test/*"],
     },
     "plugins": [
       {
@@ -34,6 +35,6 @@
       }
     ]
   },
-  "include": ["src"],
+  "include": ["src", "test"],
   "references": [{ "path": "./tsconfig.node.json" }],
 }
