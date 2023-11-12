@@ -22,6 +22,5 @@ describe('TVShows component', () => {
     render(<TVShows />, { wrapper: MemoryRouter });
     const itemsMissingElement = await screen.findByTestId('no-items');
     expect(itemsMissingElement).toBeInTheDocument();
-    useTVShowSearchMock.mockClear();
   });
 });

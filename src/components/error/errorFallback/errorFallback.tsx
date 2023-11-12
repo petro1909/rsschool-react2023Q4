@@ -15,7 +15,7 @@ export function ErrorFallback({ error, errorInfo }: ErrorFallbackProps) {
   };
 
   return (
-    <section className={classNames.errorFallback}>
+    <section data-testid="error-fallback" className={classNames.errorFallback}>
       <h1>OOOPS!!! Something wrong happened</h1>
       <div>
         <h2>{error?.message}</h2>

@@ -6,14 +6,15 @@ import { Pagination } from './pagination';
 
 describe('Pagination component', () => {
   it('should update search page parameter if page is changed', () => {
+    const targetPage = '2';
     const config: TVShowResultsConfig = { totalCount: 50, currentPage: 1, pageSize: 10 };
     render(<Pagination resultsConfig={config} />, { wrapper: BrowserRouter });
-    const secondPageButton = screen.getByTestId('2');
+    const secondPageButton = screen.getByTestId(targetPage);
     fireEvent.click(secondPageButton);
 
     const searchParams = new URLSearchParams(window.location.search);
     const pageNumber = searchParams.get('page');
 
-    expect(pageNumber).toEqual('2');
+    expect(pageNumber).toEqual(targetPage);
   });
 });

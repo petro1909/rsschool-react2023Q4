@@ -1,50 +1,47 @@
 import { ApiService } from '@service/apiService';
-import { act, fireEvent, render, screen, waitForElementToBeRemoved } from '@testing-library/react';
+import { fakeItem } from '@test/fakeItems';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import { describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { TVShowExtended } from './tvShowExtended';
 
+const fakeItemId = fakeItem.id;
+
 describe('extended card component', () => {
-  it('should display loading indicator while fetching data', () => {
+  beforeEach(() => {
     vi.spyOn(ApiService, 'getShowById').mockReturnValue(
-      new Promise((resolve) => resolve({ id: 123, title: 'test show' }))
+      new Promise((resolve) => resolve(fakeItem))
     );
-    act(() => {
-      render(
-        <MemoryRouter initialEntries={['/?detailed=123']}>
-          <TVShowExtended />
-        </MemoryRouter>
-      );
-    });
+  });
+  it('should display loading indicator while fetching data', () => {
+    render(
+      <MemoryRouter initialEntries={[`/?detailed=${fakeItemId}`]}>
+        <TVShowExtended />
+      </MemoryRouter>
+    );
 
     const loader = screen.getByTestId('loader');
     expect(loader).toBeInTheDocument();
   });
   it('should correctly displays the detailed card data', async () => {
-    const item = { id: 123, title: 'test show' };
-    vi.spyOn(ApiService, 'getShowById').mockReturnValue(new Promise((resolve) => resolve(item)));
-    act(() => {
-      render(
-        <MemoryRouter initialEntries={['/?detailed=123']}>
-          <TVShowExtended />
-        </MemoryRouter>
-      );
-    });
+    render(
+      <MemoryRouter initialEntries={[`/?detailed=${fakeItemId}`]}>
+        <TVShowExtended />
+      </MemoryRouter>
+    );
 
-    await waitForElementToBeRemoved(() => screen.getByTestId('loader'));
-    const titleElement = await screen.findByText(item.title);
+    await waitFor(() => expect(screen.queryByTestId('loader')).not.toBeInTheDocument());
+    const titleElement = await screen.findByText(fakeItem.title);
     expect(titleElement).toBeInTheDocument();
   });
   it('should hide the component by clicking the close button', async () => {
-    act(() => {
-      render(
-        <MemoryRouter initialEntries={['/?detailed=123']}>
-          <TVShowExtended />
-        </MemoryRouter>
-      );
-    });
+    render(
+      <MemoryRouter initialEntries={[`/?detailed=${fakeItemId}`]}>
+        <TVShowExtended />
+      </MemoryRouter>
+    );
 
-    await waitForElementToBeRemoved(() => screen.getByTestId('loader'));
+    await waitFor(() => expect(screen.queryByTestId('loader')).not.toBeInTheDocument());
     const closeButton = screen.getByTestId('close_card');
     fireEvent.click(closeButton);
 

@@ -10,7 +10,7 @@ describe('App component', () => {
         <App />
       </MemoryRouter>
     );
-    screen.debug();
+
     const notFountElement = screen.getByTestId('not-found');
     expect(notFountElement).toBeInTheDocument();
   });

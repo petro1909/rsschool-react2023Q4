@@ -7,7 +7,7 @@ export const ErrorButton = React.memo(function ErrorButton() {
   const setErrorEnable = () => setErrorEnabled(true);
   if (errorEnabled) throw new Error('Throwed test error');
   return (
-    <button className={classNames.errorButton} onClick={setErrorEnable}>
+    <button data-testid="error-button" className={classNames.errorButton} onClick={setErrorEnable}>
       Throw error test button
     </button>
   );

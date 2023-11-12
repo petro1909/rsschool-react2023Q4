@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react';
+import { useState, useLayoutEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import parse from 'html-react-parser';
 import { Loader } from '@components/UI/loader/loader';
@@ -13,11 +13,10 @@ export function TVShowExtended() {
   const [searchParams] = useSearchParams();
   const tvShowId = searchParams.get('detailed');
 
-  const [item, setItem] = React.useState<ExtendedTVShov | null>(null);
-  const [loaded, setLoaded] = React.useState(false);
+  const [item, setItem] = useState<ExtendedTVShov | null>(null);
+  const [loaded, setLoaded] = useState(false);
 
   useLayoutEffect(() => {
-    console.log(item);
     if (tvShowId) {
       search();
     }
