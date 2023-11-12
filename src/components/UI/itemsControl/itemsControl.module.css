@@ -1,0 +1,5 @@
+.items-control {
+  display: grid;
+  grid-template-columns: max-content max-content auto;
+  align-items: center;
+}
