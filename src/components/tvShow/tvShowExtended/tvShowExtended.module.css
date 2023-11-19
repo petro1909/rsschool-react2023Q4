@@ -1,0 +1,96 @@
+.item-page-wrapper {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background-color: #00000040;
+  display: flex;
+  overflow: auto;
+}
+
+.overlay {
+  width: 30%;
+}
+.loader-wrapper {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loader-wrapper h1 {
+  font-size: 30px;
+}
+.item-wrapper {
+  width: 70%;
+  background-color:#242424;
+  color: white;
+  min-height: 100%;
+  height: max-content;
+}
+
+.close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  scale: 0.7;
+}
+.close-button:hover {
+  opacity: 0.1;
+  cursor: pointer;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 100px 1fr auto;
+  grid-template-areas: "title title title"
+                        "image info ratings"
+                        "description description description";
+  padding: 0 15px;
+}
+.item span {
+  margin-right: 5px;
+}
+.item-image {
+  height: 250px;
+  width: 420px;
+  grid-area: image;
+}
+
+.item-title {
+  grid-area: title;
+}
+.item-info {
+  grid-area: info;
+  text-align: left;
+}
+.item-info p {
+  margin: 10px 5px;
+}
+.item-ratings {
+  grid-area: ratings;
+  text-align: left;
+}
+.item-ratings p {
+  margin: 10px 5px;
+}
+.item-ratings p span {
+  margin-right: 5px;
+}
+.item-ratings a {
+  color: #ffffff;
+}
+.item-description{
+  grid-area: description;
+  text-align: justify;
+  margin-top: 15px;
+}
+.item-description p {
+  max-width: 10px 0;
+  font-size: 17px;
+}
+.item-description a {
+  color: rgb(121, 119, 119);
+}
+

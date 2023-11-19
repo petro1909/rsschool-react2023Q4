@@ -1,0 +1,26 @@
+.search {
+  display: flex;
+  margin: 0;
+  width: max-content;
+  height: 35px;
+  border: 1px solid black;
+  border-radius: 17.5px;
+  overflow: hidden;
+}
+.search__input,
+.search__submit {
+  border: none;
+  outline: none;
+  padding: 5px 15px;
+  font-size: 18px;
+}
+.search__submit {
+  background-color: #242424;
+  border-left: 1px solid black;
+  color: white;
+  
+}
+.search__submit:hover {
+  background-color: gray;
+  cursor: pointer;
+}
