@@ -1,10 +1,8 @@
+import { TVShow } from '@app_types/api/tvShow';
 import { TVShowCard } from '@components/tvShow/tvShowCard/tvShowCard';
 import classNames from './tvShowList.module.css';
-import { useContext } from 'react';
-import { TVShowsContext } from '../tvShows/tvShows';
 
-export function TVShowList() {
-  const items = useContext(TVShowsContext);
+export function TVShowList({ items }: { items: TVShow[] }) {
   return (
     <section className={classNames.itemsWrapper}>
       {items.map((item, index) => (

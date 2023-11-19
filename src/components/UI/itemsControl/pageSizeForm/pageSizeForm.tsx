@@ -1,30 +1,14 @@
-import { useState, ChangeEvent, useEffect } from 'react';
-
+import { useState } from 'react';
 import { CustomForm } from '@components/UI/customForm/customForm';
-import { useTVShowsSearchParams } from '@hooks/useTVShowsSearchParams';
-import { getValueByKeyFromLocalStorage } from '@service/storageService';
-
 import classNames from './pageSizeForm.module.css';
 
 export type PageSizeFormProps = {
   pageSize: number;
+  submit: (pageSize: number) => void;
 };
 
 export function PageSizeForm(props: PageSizeFormProps) {
-  const [pageSize, setPageSize] = useState(0);
-  const updateTVShowsParams = useTVShowsSearchParams();
-
-  useEffect(() => {
-    setPageSize(props.pageSize);
-  }, []);
-  const setPageItemsCount = () => {
-    const searchTerm = getValueByKeyFromLocalStorage();
-    updateTVShowsParams({ pageSize: pageSize, page: 1, searchTerm: searchTerm });
-  };
-
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setPageSize(+e.target.value);
-  };
+  const [pageSize, setPageSize] = useState(props.pageSize);
 
   return (
     <section className={classNames.pageSizeWrapper}>
@@ -34,11 +18,11 @@ export function PageSizeForm(props: PageSizeFormProps) {
           type: 'number',
           placeholder: 'page size',
           value: pageSize,
-          change: handleInputChange,
+          change: (e) => setPageSize(+e.target.value),
           additionalClasses: [classNames.numberInput],
         }}
         submitProps={{
-          submitFn: setPageItemsCount,
+          submitFn: () => props.submit(pageSize),
         }}
       >
         SET

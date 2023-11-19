@@ -1,31 +1,23 @@
-import { ChangeEvent, useContext, useEffect, useState } from 'react';
-import { useLocation } from 'react-router';
-import { getValueByKeyFromLocalStorage } from '@service/storageService';
+import { ChangeEvent, useState } from 'react';
 import { CustomForm } from '@components/UI/customForm/customForm';
 import searchIcon from '@assets/search.svg';
-import { useTVShowsSearchParams } from '@hooks/useTVShowsSearchParams';
 import classNames from './searchBar.module.css';
-import { SearchBarContext } from '@page/main/main';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../../store/store';
+import { setSearchTerm } from '../../store/tvShowsSlice';
+import { useSearchParams } from 'react-router-dom';
 export const SearchBar = () => {
-  const { setSearchTerm } = useContext(SearchBarContext);
-  const [text, setText] = useState('');
-  const updateTVShowsParams = useTVShowsSearchParams();
+  const searchTerm = useSelector((state: RootState) => state.tvShows.searchTerm);
+  const [text, setText] = useState(searchTerm);
+  const dispatch = useDispatch();
 
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-
-  useEffect(() => {
-    const currentSearchTerm = getValueByKeyFromLocalStorage();
-    setText(currentSearchTerm);
-    setSearchTerm(currentSearchTerm);
-  }, []);
-
+  const [, setQueryParams] = useSearchParams();
   const search = () => {
-    const pageSizeStr = Number(queryParams.get('pageSize'));
-    const pageSize = !isNaN(pageSizeStr) ? pageSizeStr : 10;
-    updateTVShowsParams({ searchTerm: text, page: 1, pageSize: pageSize });
-    setSearchTerm(text);
+    setQueryParams((params) => {
+      params.set('page', `${1}`);
+      return params;
+    });
+    dispatch(setSearchTerm(text));
   };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {

@@ -1,36 +1,21 @@
-import { useLocation } from 'react-router';
 import { PaginationButton } from './paginationButton/paginationButton';
-import { useTVShowsSearchParams } from '@hooks/useTVShowsSearchParams';
 import { usePagination } from '@hooks/usePagination';
-import { getValueByKeyFromLocalStorage } from '@service/storageService';
 import { TVShowResultsConfig } from '@app_types/api/apiResults';
 import classNames from './pagination.module.css';
 
 export type PaginationProps = {
   resultsConfig: TVShowResultsConfig;
+  submit: (pageNumber: number) => void;
 };
 
-export function Pagination({ resultsConfig }: PaginationProps) {
-  const [pageArray, pagesCount] = usePagination(
-    resultsConfig.totalCount,
-    resultsConfig.currentPage,
-    resultsConfig.pageSize
-  );
-  const updateTVShowsParams = useTVShowsSearchParams();
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const search = (page: number) => {
-    const pageSizeStr = Number(queryParams.get('pageSize'));
-    const pageSize = !isNaN(pageSizeStr) ? pageSizeStr : 10;
-    const searchTerm = getValueByKeyFromLocalStorage();
-    updateTVShowsParams({ searchTerm: searchTerm, page: page, pageSize: pageSize });
-  };
+export function Pagination({ resultsConfig, submit }: PaginationProps) {
+  const [pageArray, pagesCount] = usePagination(resultsConfig);
 
   return (
     <section className={classNames.pages}>
       <PaginationButton
         disabled={resultsConfig.currentPage == 1}
-        onClick={search}
+        onClick={submit}
         pageNumber={resultsConfig.currentPage - 1}
         key={'prev'}
       >
@@ -45,7 +30,7 @@ export function Pagination({ resultsConfig }: PaginationProps) {
           <PaginationButton
             key={page}
             disabled={resultsConfig.currentPage == page}
-            onClick={search}
+            onClick={submit}
             pageNumber={page}
             current={resultsConfig.currentPage == page}
           >
@@ -55,7 +40,7 @@ export function Pagination({ resultsConfig }: PaginationProps) {
       )}
       <PaginationButton
         disabled={resultsConfig.currentPage == pagesCount}
-        onClick={search}
+        onClick={submit}
         pageNumber={resultsConfig.currentPage + 1}
         key={'next'}
       >

@@ -1,8 +1,10 @@
-export function usePagination(
-  totalCount: number,
-  currentPage: number,
-  pageSize: number
-): [number[], number] {
+import { TVShowResultsConfig } from '@app_types/api/apiResults';
+
+export function usePagination({
+  totalCount,
+  currentPage,
+  pageSize,
+}: TVShowResultsConfig): [number[], number] {
   function getPageArray(pageCount: number, startNumber: number): number[] {
     return Array.from({ length: pageCount }, (_, idx) => idx + startNumber);
   }
