@@ -15,10 +15,10 @@ export type ItemsControlProps = {
 
 export function ItemsControl() {
   const state = useSelector((state: RootState) => state.tvShows);
+
   const dispatch = useDispatch();
   const [, setQueryParams] = useSearchParams();
-  const totalCount = useGetShowsCountQuery(state.searchTerm).data ?? 0;
-
+  const { data = 0 } = useGetShowsCountQuery(state.searchTerm);
   const updatePage = (page: number) => {
     setQueryParams((params) => {
       params.set('page', `${page}`);
@@ -37,11 +37,11 @@ export function ItemsControl() {
 
   return (
     <section className={classNames.itemsControl}>
-      <TotalCount count={totalCount!} />
+      <TotalCount count={data} />
       <PageSizeForm pageSize={state.pageSize} submit={updatePageSize} />
       <Pagination
         resultsConfig={{
-          totalCount: totalCount,
+          totalCount: data,
           currentPage: state.page,
           pageSize: state.pageSize,
         }}

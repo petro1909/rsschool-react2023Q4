@@ -1,20 +1,15 @@
-import { ApiService } from '@service/apiService';
 import { fakeItem } from '@test/fakeItems';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { renderWithProviders } from '@test/reduxRender';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { TVShowExtended } from './tvShowExtended';
 
 const fakeItemId = fakeItem.id;
 
 describe('extended card component', () => {
-  beforeEach(() => {
-    vi.spyOn(ApiService, 'getShowById').mockReturnValue(
-      new Promise((resolve) => resolve(fakeItem))
-    );
-  });
   it('should display loading indicator while fetching data', () => {
-    render(
+    renderWithProviders(
       <MemoryRouter initialEntries={[`/?detailed=${fakeItemId}`]}>
         <TVShowExtended />
       </MemoryRouter>
@@ -24,7 +19,7 @@ describe('extended card component', () => {
     expect(loader).toBeInTheDocument();
   });
   it('should correctly displays the detailed card data', async () => {
-    render(
+    renderWithProviders(
       <MemoryRouter initialEntries={[`/?detailed=${fakeItemId}`]}>
         <TVShowExtended />
       </MemoryRouter>
@@ -35,7 +30,7 @@ describe('extended card component', () => {
     expect(titleElement).toBeInTheDocument();
   });
   it('should hide the component by clicking the close button', async () => {
-    render(
+    renderWithProviders(
       <MemoryRouter initialEntries={[`/?detailed=${fakeItemId}`]}>
         <TVShowExtended />
       </MemoryRouter>

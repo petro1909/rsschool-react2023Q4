@@ -8,7 +8,6 @@ import {
 const setInitialState = () => {
   const urlParams = new URLSearchParams(window.location.search);
   const searchTerm = getValueByKeyFromLocalStorage();
-
   const pageSizeParam = Number(urlParams.get('pageSize'));
   const pageSize = !isNaN(pageSizeParam) && pageSizeParam > 0 ? pageSizeParam : 10;
 
