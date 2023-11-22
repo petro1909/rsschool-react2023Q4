@@ -1,11 +1,7 @@
 export const storageKey = 'searchValue';
 
 export function getValueByKeyFromLocalStorage(): string {
-  const value = localStorage.getItem(storageKey);
-  if (!value) {
-    return '';
-  }
-  return value;
+  return localStorage.getItem(storageKey) || '';
 }
 
 export function setValueByKeyToLocalStorage(value: string): void {
