@@ -15,19 +15,15 @@ export function usePagination({
     pageNumberArray = getPageArray(pagesCount, 1);
   } else {
     if (currentPage < pageLineNumber) {
-      pageNumberArray.push(...getPageArray(pageLineNumber, 1));
-      pageNumberArray.push(0);
-      pageNumberArray.push(pagesCount);
+      pageNumberArray.push(...[...getPageArray(pageLineNumber, 1), 0, pagesCount]);
     } else if (currentPage > pagesCount - pageLineNumber + 1) {
-      pageNumberArray.push(1);
-      pageNumberArray.push(0);
-      pageNumberArray.push(...getPageArray(pageLineNumber, pagesCount - pageLineNumber + 1));
+      pageNumberArray.push(
+        ...[1, 0, ...getPageArray(pageLineNumber, pagesCount - pageLineNumber + 1)]
+      );
     } else {
-      pageNumberArray.push(1);
-      pageNumberArray.push(0);
-      pageNumberArray.push(...getPageArray(pageLineNumber, currentPage - 1));
-      pageNumberArray.push(0);
-      pageNumberArray.push(pagesCount);
+      pageNumberArray.push(
+        ...[1, 0, ...getPageArray(pageLineNumber, currentPage - 1), 0, pagesCount]
+      );
     }
   }
   return [pageNumberArray, pagesCount];
