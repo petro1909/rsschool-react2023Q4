@@ -6,15 +6,12 @@ export type ItemRatingPropertyProps = {
 } & BaseProps;
 
 export function ItemRatingProperty({ rating, voted, children }: ItemRatingPropertyProps) {
+  if (!rating) return null;
   return (
-    <>
-      {rating && (
-        <p>
-          <span>{children}</span>
-          <span>{rating}</span>
-          <span>Voted: ({voted})</span>
-        </p>
-      )}
-    </>
+    <p>
+      <span>{children}</span>
+      <span>{rating}</span>
+      <span>Voted: ({voted})</span>
+    </p>
   );
 }
