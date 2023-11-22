@@ -18,7 +18,7 @@ export function TVShows() {
     return <Loader />;
   }
 
-  if (data.length <= 0) {
+  if (data.length === 0) {
     return (
       <div className={classNames.emptyItems} data-testid="no-items">
         Nothing was found for the specified request
