@@ -36,7 +36,7 @@ export function CustomForm({ inputProps, submitProps, children }: CustomFormProp
       <button
         data-testid={'submit'}
         className={classNames.searchSubmit}
-        onClick={async () => await submitProps.submitFn()}
+        onClick={submitProps.submitFn}
       >
         {children}
       </button>
