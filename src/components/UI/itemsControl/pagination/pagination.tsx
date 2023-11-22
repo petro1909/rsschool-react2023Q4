@@ -17,7 +17,7 @@ export function Pagination({ resultsConfig, submit }: PaginationProps) {
         disabled={resultsConfig.currentPage === 1}
         onClick={submit}
         pageNumber={resultsConfig.currentPage - 1}
-        key={'prev'}
+        key="prev"
       >
         &#x2BC7;
       </PaginationButton>
@@ -42,7 +42,7 @@ export function Pagination({ resultsConfig, submit }: PaginationProps) {
         disabled={resultsConfig.currentPage === pagesCount}
         onClick={submit}
         pageNumber={resultsConfig.currentPage + 1}
-        key={'next'}
+        key="next"
       >
         &#x2BC8;
       </PaginationButton>
