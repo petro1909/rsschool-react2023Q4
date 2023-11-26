@@ -1,19 +1,16 @@
-import { useSearchParams } from 'react-router-dom';
 import { TVShow } from '@app_types/api/tvShow';
 import classNames from './tvShowCard.module.css';
+import { useRouter } from 'next/router';
 
 export type CardProps = {
   item: TVShow;
 };
 
 export function TVShowCard({ item }: CardProps) {
-  const [, setSearchParams] = useSearchParams();
+  const router = useRouter();
 
   const openExtendedShowCard = () => {
-    setSearchParams((params) => {
-      params.set('detailed', `${item.id}`);
-      return params;
-    });
+    router.push({ query: { ...router.query, detailedId: item.id } });
   };
 
   return (
