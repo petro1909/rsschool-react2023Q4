@@ -1,12 +1,15 @@
 import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
 import { fakeItems } from '@test/fakeItems';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { TVShowList } from './tvShowList';
+import { server } from '../../../../test/setupTests';
+import { createHandlers } from '@test/mockServer';
 
 describe('TVShowList component', () => {
+  vi.mock('next/router', () => require('next-router-mock'));
   it('should rended the specified number of cards', () => {
-    render(<TVShowList items={fakeItems} />, { wrapper: MemoryRouter });
+    server.use(...createHandlers(true));
+    render(<TVShowList items={fakeItems} />);
     const tvShowElementList = screen.getAllByTestId('tvShowCardElement');
     expect(tvShowElementList.length).toEqual(fakeItems.length);
   });
