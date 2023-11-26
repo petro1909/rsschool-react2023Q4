@@ -16,7 +16,7 @@ export const SearchBar = () => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setValueToLocalStorage(text);
-    router.push({ query: { ...router.query, searchQuery: text } });
+    router.push({ query: { ...router.query, searchQuery: text, page: 1 } });
   };
 
   return (

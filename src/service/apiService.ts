@@ -15,13 +15,13 @@ export class ApiService {
   }
 
   public static createGetShowsBody(
-    searchTerm: string,
+    searchQuery: string,
     page: number,
     pageSize: number
   ): ApiBaseRequest {
     --page;
     const params: GetShowsRequestParams = {
-      search: { query: searchTerm },
+      search: { query: searchQuery },
       page: page,
       pageSize: pageSize,
     };
@@ -31,8 +31,8 @@ export class ApiService {
     return requestBody;
   }
 
-  public static createGetShowsCountBody(searchTerm: string): ApiBaseRequest {
-    const params: GetShowsCountRequestParameters = { search: { query: searchTerm } };
+  public static createGetShowsCountBody(searchQuery: string): ApiBaseRequest {
+    const params: GetShowsCountRequestParameters = { search: { query: searchQuery } };
     const requestBody = ApiService.baseRequestBody;
     requestBody.method = 'shows.Count';
     requestBody.params = params;

@@ -23,18 +23,18 @@ export const tvShowsApi = createApi({
   },
   endpoints: (build) => ({
     getShows: build.query<TVShow[], TVShowsSearchProps>({
-      query: ({ searchTerm, page, pageSize }) => ({
+      query: ({ searchQuery, page, pageSize }) => ({
         url: `/`,
         method: 'POST',
-        body: ApiService.createGetShowsBody(searchTerm, page, pageSize),
+        body: ApiService.createGetShowsBody(searchQuery, page, pageSize),
       }),
       transformResponse: (response: GetShowsResponse) => response.result,
     }),
     getShowsCount: build.query<number, string>({
-      query: (searchTerm) => ({
+      query: (searchQuery) => ({
         url: '/',
         method: 'POST',
-        body: ApiService.createGetShowsCountBody(searchTerm),
+        body: ApiService.createGetShowsCountBody(searchQuery),
       }),
       transformResponse: (response: GetShowsCountResponse) => response.result,
     }),
