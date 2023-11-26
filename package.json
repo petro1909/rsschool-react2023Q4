@@ -50,5 +50,8 @@
     "typescript-plugin-css-modules": "^5.0.2",
     "vite-tsconfig-paths": "^4.2.1",
     "vitest": "^0.34.2"
+  },
+  "lint-staged": {
+    "*.{tsx,ts}": "npm run stagedLint"
   }
 }
