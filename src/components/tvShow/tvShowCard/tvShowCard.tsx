@@ -18,7 +18,7 @@ export function TVShowCard({ item }: CardProps) {
     <section data-testid={'tvShowCardElement'} onClick={openExtendedShowCard}>
       <section className={classNames.itemWrapper} data-testid={item.id}>
         <div className={classNames.itemImage}>
-          <Image src={item.image} alt="item-image" />
+          <Image src={item.image} alt="item-image" width={320} height={180} />
         </div>
         <div className={classNames.itemInfo}>
           <section>

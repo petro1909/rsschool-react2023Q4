@@ -22,7 +22,13 @@ export function TVShowExtendedWrapper(props: TVShowExtendedWrapperProps) {
       ></section>
       <section className={classNames.itemWrapper}>
         <section className={classNames.closeButton}>
-          <Image src={closeImage} alt="close" onClick={() => closeExtendedShowCard()} />
+          <Image
+            src={closeImage}
+            alt="close"
+            onClick={() => closeExtendedShowCard()}
+            width={50}
+            height={50}
+          />
         </section>
         {props.children}
       </section>

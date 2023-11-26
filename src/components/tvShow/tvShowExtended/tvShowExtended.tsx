@@ -40,7 +40,13 @@ export function TVShowExtended() {
           </section>
           <section>
             {data.image && (
-              <Image src={data.image} alt={data.title || ''} className={classNames.itemImage} />
+              <Image
+                src={data.image}
+                alt={data.title || ''}
+                className={classNames.itemImage}
+                height={250}
+                width={420}
+              />
             )}
           </section>
           <section className={classNames.itemInfo}>
