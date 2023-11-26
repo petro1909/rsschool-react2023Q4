@@ -6,6 +6,7 @@ import classNames from './tvShowExtended.module.css';
 import { TVShowExtendedWrapper } from './tvShowExtendedWrapper';
 import { useGetShowByIdQuery } from '../../../redux/tvShowsApi';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 export function TVShowExtended() {
   const router = useRouter();
@@ -38,7 +39,9 @@ export function TVShowExtended() {
             <h3>{data.titleOriginal}</h3>
           </section>
           <section>
-            <img src={data.image} alt={data.title} className={classNames.itemImage} />
+            {data.image && (
+              <Image src={data.image} alt={data.title || ''} className={classNames.itemImage} />
+            )}
           </section>
           <section className={classNames.itemInfo}>
             <ItemProperty text="Platform:" value={data.network?.title} />

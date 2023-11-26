@@ -1,6 +1,7 @@
 import { TVShow } from '@app_types/api/tvShow';
 import classNames from './tvShowCard.module.css';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 export type CardProps = {
   item: TVShow;
@@ -17,7 +18,7 @@ export function TVShowCard({ item }: CardProps) {
     <section data-testid={'tvShowCardElement'} onClick={openExtendedShowCard}>
       <section className={classNames.itemWrapper} data-testid={item.id}>
         <div className={classNames.itemImage}>
-          <img src={item.image}></img>
+          <Image src={item.image} alt="item-image" />
         </div>
         <div className={classNames.itemInfo}>
           <section>

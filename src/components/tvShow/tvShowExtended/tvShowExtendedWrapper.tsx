@@ -2,6 +2,7 @@ import { BaseProps } from '@app_types/baseProps';
 import classNames from './tvShowExtended.module.css';
 import closeImage from '@assets/close.svg';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 type TVShowExtendedWrapperProps = BaseProps;
 
 export function TVShowExtendedWrapper(props: TVShowExtendedWrapperProps) {
@@ -21,7 +22,7 @@ export function TVShowExtendedWrapper(props: TVShowExtendedWrapperProps) {
       ></section>
       <section className={classNames.itemWrapper}>
         <section className={classNames.closeButton}>
-          <img src={closeImage} onClick={() => closeExtendedShowCard()} />
+          <Image src={closeImage} alt="close" onClick={() => closeExtendedShowCard()} />
         </section>
         {props.children}
       </section>
