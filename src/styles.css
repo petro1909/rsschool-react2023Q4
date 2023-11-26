@@ -1,0 +1,40 @@
+body {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+p {
+  margin: 5px;
+}
+
+form {
+  display: flex;
+  margin: 0;
+  width: max-content;
+  height: 35px;
+  border: 1px solid black;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+input, button[type="submit"] {
+  border: none;
+  outline: none;
+  padding: 5px 15px;
+  font-size: 18px;
+}
+
+button[type="submit"] {
+  background-color: #242424;
+  border-left: 1px solid black;
+  color: white;
+}
+
+button[type="submit"]:hover {
+  background-color: gray;
+  cursor: pointer;
+}

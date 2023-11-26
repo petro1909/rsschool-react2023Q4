@@ -6,7 +6,7 @@
 
 .page-dots {
   display: flex;
-  align-items: end;
+  align-items: flex-end;
   padding-bottom: 1px;
   box-sizing: border-box;
   font-size: 40px;

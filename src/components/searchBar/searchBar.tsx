@@ -1,35 +1,36 @@
-import { ChangeEvent, useState } from 'react';
-import { CustomForm } from '@components/UI/customForm/customForm';
-import searchIcon from '@assets/search.svg';
+import { FormEvent, useEffect, useState } from 'react';
+import searchIcon from '../../public/search.svg';
 import classNames from './searchBar.module.css';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../store/store';
-import { setSearchTerm } from '../../store/tvShowsSlice';
-import { useSearchParams } from 'react-router-dom';
+import { useRouter } from 'next/router';
+import Image from 'next/image';
+import { getTVshowsQueryParams } from '@service/queryParamsService';
+
 export const SearchBar = () => {
-  const searchTerm = useSelector((state: RootState) => state.tvShows.searchTerm);
-  const [text, setText] = useState(searchTerm);
-  const dispatch = useDispatch();
+  const [text, setText] = useState('');
+  const router = useRouter();
 
-  const [, setQueryParams] = useSearchParams();
-  const search = () => {
-    setQueryParams((params) => {
-      params.set('page', `${1}`);
-      return params;
-    });
-    dispatch(setSearchTerm(text));
-  };
+  useEffect(() => {
+    const { searchQuery } = getTVshowsQueryParams(router.query);
+    setText(searchQuery);
+  }, []);
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setText(e.target.value);
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    router.push({ query: { ...router.query, searchQuery: text, page: 1 } });
   };
 
   return (
-    <CustomForm
-      inputProps={{ type: 'text', placeholder: 'search', value: text, change: handleInputChange }}
-      submitProps={{ submitFn: search }}
-    >
-      <img src={searchIcon} className={classNames.searchImage}></img>
-    </CustomForm>
+    <form onSubmit={handleSubmit}>
+      <input
+        data-testId="input"
+        type="text"
+        placeholder="search"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+      />
+      <button type="submit" data-testId="submit">
+        <Image src={searchIcon} alt="search" className={classNames.image} width={50} height={50} />
+      </button>
+    </form>
   );
 };

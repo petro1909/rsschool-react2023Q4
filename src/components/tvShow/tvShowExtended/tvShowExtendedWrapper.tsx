@@ -1,17 +1,16 @@
 import { BaseProps } from '@app_types/baseProps';
-import { useSearchParams } from 'react-router-dom';
 import classNames from './tvShowExtended.module.css';
 import closeImage from '@assets/close.svg';
+import { useRouter } from 'next/router';
+import Image from 'next/image';
 type TVShowExtendedWrapperProps = BaseProps;
 
 export function TVShowExtendedWrapper(props: TVShowExtendedWrapperProps) {
-  const [, setSearchParams] = useSearchParams();
-
+  const router = useRouter();
   const closeExtendedShowCard = () => {
-    setSearchParams((params) => {
-      params.delete('detailed');
-      return params;
-    });
+    const params = new URLSearchParams(router.query as unknown as string);
+    params.delete('detailedId');
+    router.push({ query: params.toString() }, undefined, { shallow: true });
   };
 
   return (
@@ -23,7 +22,13 @@ export function TVShowExtendedWrapper(props: TVShowExtendedWrapperProps) {
       ></section>
       <section className={classNames.itemWrapper}>
         <section className={classNames.closeButton}>
-          <img src={closeImage} onClick={() => closeExtendedShowCard()} />
+          <Image
+            src={closeImage}
+            alt="close"
+            onClick={() => closeExtendedShowCard()}
+            width={50}
+            height={50}
+          />
         </section>
         {props.children}
       </section>

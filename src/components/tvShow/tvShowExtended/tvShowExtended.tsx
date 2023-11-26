@@ -1,17 +1,18 @@
-import { useSearchParams } from 'react-router-dom';
 import parse from 'html-react-parser';
 import { Loader } from '@components/UI/loader/loader';
 import { ItemProperty } from '@components/UI/itemProperty/itemProperty';
 import { ItemRatingProperty } from '@components/UI/itemRatingProperty/itemRatingProperty';
 import classNames from './tvShowExtended.module.css';
 import { TVShowExtendedWrapper } from './tvShowExtendedWrapper';
-import { useGetShowByIdQuery } from '../../../store/tvShowsApi';
+import { useGetShowByIdQuery } from '../../../redux/tvShowsApi';
+import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 export function TVShowExtended() {
-  const [searchParams] = useSearchParams();
-  const tvShowId = searchParams.get('detailed');
-  const { data = null, isFetching } = useGetShowByIdQuery(+tvShowId!);
-  if (!tvShowId) return null;
+  const router = useRouter();
+
+  const { data = null, isFetching } = useGetShowByIdQuery(+router.query.detailedId!);
+  if (!router.query.detailedId) return null;
   if (isFetching) {
     return (
       <TVShowExtendedWrapper>
@@ -38,7 +39,15 @@ export function TVShowExtended() {
             <h3>{data.titleOriginal}</h3>
           </section>
           <section>
-            <img src={data.image} alt={data.title} className={classNames.itemImage} />
+            {data.image && (
+              <Image
+                src={data.image}
+                alt={data.title || ''}
+                className={classNames.itemImage}
+                height={250}
+                width={420}
+              />
+            )}
           </section>
           <section className={classNames.itemInfo}>
             <ItemProperty text="Platform:" value={data.network?.title} />

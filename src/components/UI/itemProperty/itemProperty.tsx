@@ -4,14 +4,11 @@ export type ItemPropertyProps = {
 };
 
 export function ItemProperty({ text, value }: ItemPropertyProps) {
+  if (!value) return null;
   return (
-    <>
-      {value && (
-        <p>
-          <span>{text}</span>
-          <span>{value}</span>
-        </p>
-      )}
-    </>
+    <p>
+      <span>{text}</span>
+      <span>{value}</span>
+    </p>
   );
 }

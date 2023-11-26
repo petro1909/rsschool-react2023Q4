@@ -1,8 +1,8 @@
-import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { About } from './about';
+import { render, screen } from '@testing-library/react';
+import About from './index';
 
-describe('about page component', () => {
+describe('Pages Router', () => {
   it('should render about page', () => {
     render(<About />);
     const aboutElement = screen.getByText('About');

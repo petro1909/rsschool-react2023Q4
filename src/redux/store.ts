@@ -1,16 +1,14 @@
-import { combineReducers, configureStore, PreloadedState } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { tvShowsApi } from './tvShowsApi';
-import tvShows from './tvShowsSlice';
+import { createWrapper } from 'next-redux-wrapper';
 
 const rootReducer = combineReducers({
   [tvShowsApi.reducerPath]: tvShowsApi.reducer,
-  tvShows,
 });
 
-export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
+export const setupStore = () => {
   return configureStore({
     reducer: rootReducer,
-    preloadedState,
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({ immutableCheck: false, serializableCheck: false }).concat(
         tvShowsApi.middleware
@@ -20,3 +18,4 @@ export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
 
 export type RootState = ReturnType<typeof rootReducer>;
 export type AppStore = ReturnType<typeof setupStore>;
+export const wrapper = createWrapper<AppStore>(setupStore, { debug: true });

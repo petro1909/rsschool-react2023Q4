@@ -1,5 +1,5 @@
 export type TVShowsSearchProps = {
-  searchTerm: string;
+  searchQuery: string;
   page: number;
   pageSize: number;
 };

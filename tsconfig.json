@@ -1,30 +1,45 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "allowJs": false,
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
     "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
     "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "ESNext",
-    "moduleResolution": "Node",
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "Bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
     "noImplicitAny": true,
-    "noEmit": true,
-    "jsx": "react-jsx",
-    "baseUrl": "./",
     "paths": {
-      "@app_types/*": ["./src/types/*"],
-      "@hooks/*": ["./src/hooks/*"],
-      "@service/*": ["./src/service/*"],
-      "@page/*": ["./src/page/*"],
-      "@components/*": ["./src/components/*"],
-      "@assets/*": ["./src/assets/*"],
-      "@test/*":["./test/*"],
+      "@app_types/*": [
+        "./src/types/*"
+      ],
+      "@hooks/*": [
+        "./src/hooks/*"
+      ],
+      "@service/*": [
+        "./src/service/*"
+      ],
+      "@page/*": [
+        "./src/page/*"
+      ],
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@assets/*": [
+        "./src/public/*"
+      ],
+      "@test/*": [
+        "./test/*"
+      ]
     },
     "plugins": [
       {
@@ -33,8 +48,14 @@
           "classnameTransform": "camelCaseOnly"
         }
       }
-    ]
+    ],
   },
-  "include": ["src", "test"],
-  "references": [{ "path": "./tsconfig.node.json" }],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
