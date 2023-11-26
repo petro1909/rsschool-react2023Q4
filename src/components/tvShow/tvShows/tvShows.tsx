@@ -3,17 +3,16 @@ import { TVShowList } from '@components/tvShow/tvShowList/tvShowList';
 import { useGetShowsQuery } from '../../../redux/tvShowsApi';
 import classNames from './tvShows.module.css';
 import { useRouter } from 'next/router';
+import { getTVshowsQueryParams } from '@service/queryParamsService';
 
 export function TVShows() {
   const router = useRouter();
-  const { query } = router;
-  const searchQuery = query.searchQuery ? (query.searchQuery as string) : '';
-  const page = !isNaN(Number(query.page)) ? Number(query.page) : 1;
-  const pageSize = !isNaN(Number(query.pageSize)) ? Number(query.pageSize) : 10;
+  const { searchQuery, page, pageSize } = getTVshowsQueryParams(router.query);
+
   const { data = [] } = useGetShowsQuery({
-    searchTerm: searchQuery,
-    page: page,
-    pageSize: pageSize,
+    searchQuery,
+    page,
+    pageSize,
   });
 
   if (data.length === 0) {

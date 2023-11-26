@@ -5,6 +5,7 @@ import { TVShowExtended } from '@components/tvShow/tvShowExtended/tvShowExtended
 import { wrapper } from '../redux/store';
 import { getRunningQueriesThunk, getShowById, getShows, getShowsCount } from '../redux/tvShowsApi';
 import classNames from './index.module.css';
+import { getTVshowsQueryParams } from '@service/queryParamsService';
 
 export default function Main() {
   return (
@@ -23,13 +24,10 @@ export default function Main() {
 }
 
 export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ query }) => {
-  const searchQuery = query.searchQuery ? (query.searchQuery as string) : '';
-  const page = !isNaN(Number(query.page)) ? Number(query.page) : 1;
-  const pageSize = !isNaN(Number(query.pageSize)) ? Number(query.pageSize) : 10;
-  const detailedId = Number(query.detailedId);
+  const { searchQuery, page, pageSize, detailedId } = getTVshowsQueryParams(query);
   await store.dispatch(getShowsCount.initiate(searchQuery));
 
-  await store.dispatch(getShows.initiate({ searchTerm: searchQuery, page, pageSize }));
+  await store.dispatch(getShows.initiate({ searchQuery, page, pageSize }));
   if (detailedId) {
     await store.dispatch(getShowById.initiate(detailedId));
   }
