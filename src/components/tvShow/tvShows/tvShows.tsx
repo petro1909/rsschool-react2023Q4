@@ -1,22 +1,20 @@
 import { ItemsControl } from '@components/UI/itemsControl/itemsControl';
 import { TVShowList } from '@components/tvShow/tvShowList/tvShowList';
-import { Loader } from '@components/UI/loader/loader';
-import { useGetShowsQuery } from '../../../store/tvShowsApi';
-import { RootState } from 'src/store/store';
-import { useSelector } from 'react-redux';
+import { useGetShowsQuery } from '../../../redux/tvShowsApi';
 import classNames from './tvShows.module.css';
+import { useRouter } from 'next/router';
 
 export function TVShows() {
-  const state = useSelector((state: RootState) => state.tvShows);
-  const { data = [], isFetching } = useGetShowsQuery({
-    searchTerm: state.searchTerm,
-    page: state.page,
-    pageSize: state.pageSize,
+  const router = useRouter();
+  const { query } = router;
+  const searchQuery = query.searchQuery ? (query.searchQuery as string) : '';
+  const page = !isNaN(Number(query.page)) ? Number(query.page) : 1;
+  const pageSize = !isNaN(Number(query.pageSize)) ? Number(query.pageSize) : 10;
+  const { data = [] } = useGetShowsQuery({
+    searchTerm: searchQuery,
+    page: page,
+    pageSize: pageSize,
   });
-
-  if (isFetching) {
-    return <Loader />;
-  }
 
   if (data.length === 0) {
     return (
