@@ -1,5 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'media.myshows.me',
+        port: '',
+      },
+    ],
+  },
   reactStrictMode: false,
   //next config for transforming css classes to camelCase
   webpack: (config) => {
