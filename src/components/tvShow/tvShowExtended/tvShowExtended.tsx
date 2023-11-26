@@ -1,17 +1,17 @@
-import { useSearchParams } from 'react-router-dom';
 import parse from 'html-react-parser';
 import { Loader } from '@components/UI/loader/loader';
 import { ItemProperty } from '@components/UI/itemProperty/itemProperty';
 import { ItemRatingProperty } from '@components/UI/itemRatingProperty/itemRatingProperty';
 import classNames from './tvShowExtended.module.css';
 import { TVShowExtendedWrapper } from './tvShowExtendedWrapper';
-import { useGetShowByIdQuery } from '../../../store/tvShowsApi';
+import { useGetShowByIdQuery } from '../../../redux/tvShowsApi';
+import { useRouter } from 'next/router';
 
 export function TVShowExtended() {
-  const [searchParams] = useSearchParams();
-  const tvShowId = searchParams.get('detailed');
-  const { data = null, isFetching } = useGetShowByIdQuery(+tvShowId!);
-  if (!tvShowId) return null;
+  const router = useRouter();
+
+  const { data = null, isFetching } = useGetShowByIdQuery(+router.query.detailedId!);
+  if (!router.query.detailedId) return null;
   if (isFetching) {
     return (
       <TVShowExtendedWrapper>
