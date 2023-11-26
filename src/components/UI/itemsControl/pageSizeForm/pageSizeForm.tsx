@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { CustomForm } from '@components/UI/customForm/customForm';
+import { FormEvent, useState } from 'react';
 import classNames from './pageSizeForm.module.css';
 
 export type PageSizeFormProps = {
@@ -7,26 +6,26 @@ export type PageSizeFormProps = {
   submit: (pageSize: number) => void;
 };
 
-export function PageSizeForm(props: PageSizeFormProps) {
-  const [pageSize, setPageSize] = useState(props.pageSize);
+export function PageSizeForm({ pageSize, submit }: PageSizeFormProps) {
+  const [size, setSize] = useState(pageSize);
 
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    submit(size);
+  };
   return (
     <section className={classNames.pageSizeWrapper}>
       <span>Page size:</span>
-      <CustomForm
-        inputProps={{
-          type: 'number',
-          placeholder: 'page size',
-          value: pageSize,
-          change: (e) => setPageSize(+e.target.value),
-          additionalClasses: [classNames.numberInput],
-        }}
-        submitProps={{
-          submitFn: () => props.submit(pageSize),
-        }}
-      >
-        SET
-      </CustomForm>
+      <form onSubmit={handleSubmit}>
+        <input
+          className={classNames.numberInput}
+          type="number"
+          placeholder="page size"
+          value={size}
+          onChange={(e) => setSize(+e.target.value)}
+        />
+        <button type="submit">SET</button>
+      </form>
     </section>
   );
 }
