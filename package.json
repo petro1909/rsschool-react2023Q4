@@ -10,7 +10,8 @@
     "prepare": "husky install",
     "test": "vitest run --coverage",
     "format:fix": "prettier . --write",
-    "format": "prettier . --check"
+    "format": "prettier . --check",
+    "stagedLint": "eslint"
   },
   "dependencies": {
     "next": "14.0.3",
