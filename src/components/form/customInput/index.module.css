@@ -1,0 +1,11 @@
+.custom-text-input-wrapper {
+
+}
+
+.custom-text-input-wrapper > * {
+  display: block;
+}
+
+.error {
+  height: 20px;
+}
