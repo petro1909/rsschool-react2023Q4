@@ -1,0 +1,14 @@
+.toggle-visibility-wrapper {
+  display: inline-flex;
+}
+.toggle-visibility-button {
+  border: none;
+  background: none;
+  display: flex;
+  align-items: center;
+}
+.toggle-visibility-image {
+  width: 30px;
+  height: 30px;
+  background: transparent;
+}

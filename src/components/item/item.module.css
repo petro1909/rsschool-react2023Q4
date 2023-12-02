@@ -1,0 +1,26 @@
+.item-wrapper {
+  display: flex;
+  margin: 10px 0;
+  align-items: center;
+  border: 3px solid black;
+  border-radius: 10px;
+  gap: 50px;
+}
+.picture-wrapper {
+  height: 200px;
+  width: 250px;
+  display: flex;
+  justify-content: center;
+}
+.image {
+  height: 100%;
+}
+.item-property {
+  display: inline-block;
+  margin: 10px;
+  font-size: 18px;
+  font-weight: 400;
+}
+.just-added {
+  border: 5px solid rgb(109, 109, 243);
+}
