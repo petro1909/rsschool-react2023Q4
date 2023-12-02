@@ -1,5 +1,6 @@
-.radio {
+.radio-wrapper {
   display: flex;
+  align-items: center;
   margin: 5px 15px 5px 0px;
   column-gap: 5px;
 }
