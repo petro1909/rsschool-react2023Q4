@@ -6,19 +6,18 @@ import arrowUp from '@assets/arrow-up.svg';
 import arrowDown from '@assets/arrow-down.svg';
 import { InputWrapper } from '../customInputWrapper';
 import { HighlightedItem } from './higlightedIntm';
-import { RootState } from '@redux/store';
-import { useSelector } from 'react-redux';
+import { ValidationError } from 'yup';
 
 type CustomAutocompleteSelectProps = {
+  elements: string[];
   id: string;
   placeholder?: string;
   label: string;
-  error?: FieldError | undefined;
+  error?: FieldError | ValidationError | undefined;
 };
 
 export const CustomAutocompleteSelect = React.forwardRef<HTMLInputElement, CustomAutocompleteSelectProps>(
-  ({ id, placeholder, label, error, ...rest }: CustomAutocompleteSelectProps, ref) => {
-    const elements = useSelector((state: RootState) => state.countries);
+  ({ elements, id, placeholder, label, error, ...rest }: CustomAutocompleteSelectProps, ref) => {
     const [countries, setCountries] = useState(elements);
     const [inputValue, setInputValue] = useState('');
     const [elementsVisibility, setElementsVisibility] = useState(false);

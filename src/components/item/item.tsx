@@ -9,7 +9,6 @@ type ItemProps = {
 };
 
 export const Item = memo(({ item, justAdded }: ItemProps) => {
-  console.log(justAdded);
   return (
     <section className={[classNames.itemWrapper, justAdded && classNames.justAdded].join(' ')}>
       <section className={classNames.pictureWrapper}>

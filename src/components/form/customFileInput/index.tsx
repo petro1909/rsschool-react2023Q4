@@ -2,12 +2,13 @@ import { FieldError } from 'react-hook-form';
 import classNames from './index.module.css';
 import { forwardRef, useState } from 'react';
 import { InputWrapper } from '../customInputWrapper';
+import { ValidationError } from 'yup';
 
 type TextInputProps = {
   id: string;
   label: string;
-  error?: FieldError | undefined;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  error?: FieldError | ValidationError | undefined;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 export const CustomFileInput = forwardRef<HTMLInputElement, TextInputProps>(({ id, label, error, onChange, ...rest }: TextInputProps, ref) => {

@@ -2,11 +2,12 @@ import { FieldError } from 'react-hook-form';
 import classNames from './index.module.css';
 import React from 'react';
 import { InputWrapper } from '../customInputWrapper';
+import { ValidationError } from 'yup';
 
 type CustomCheckboxInputProps = {
   id: string;
   label: string;
-  error?: FieldError | undefined;
+  error?: FieldError | ValidationError | undefined;
 };
 
 export const CustomCheckboxInput = React.forwardRef<HTMLInputElement, CustomCheckboxInputProps>(

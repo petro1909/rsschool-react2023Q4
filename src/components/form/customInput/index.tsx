@@ -1,20 +1,21 @@
 import { FieldError } from 'react-hook-form';
 import { forwardRef } from 'react';
 import { InputWrapper } from '../customInputWrapper';
+import { ValidationError } from 'yup';
 
 type TextInputProps = {
   type: 'text' | 'number' | 'email' | 'password' | 'radio' | 'checkbox' | 'file';
   id: string;
   placeholder?: string;
   label: string;
-  error?: FieldError | undefined;
+  error?: FieldError | ValidationError | undefined;
 };
 
 export const CustomInput = forwardRef<HTMLInputElement, TextInputProps>(({ type, id, placeholder, label, error, ...rest }: TextInputProps, ref) => {
   return (
     <div>
       <InputWrapper id={id} label={label} error={error}>
-        <input type={type} id={id} placeholder={placeholder} ref={ref} {...rest} />
+        <input type={type} id={id} placeholder={placeholder} ref={ref} {...rest} autoComplete="nope" />
       </InputWrapper>
     </div>
   );
