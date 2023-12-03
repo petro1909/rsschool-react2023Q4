@@ -9,8 +9,8 @@ type TextInputProps = {
   id: string;
   placeholder?: string;
   label: string;
-  error?: FieldError | undefined;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  error?: FieldError | ValidationError | undefined;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 const passwordStrengthLevels: PasswordStrengthLevel[] = [

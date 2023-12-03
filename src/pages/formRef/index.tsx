@@ -12,6 +12,7 @@ import { CustomAutocompleteSelect } from '@components/form/customSelect/index';
 import { CustomFileInput } from '@components/form/customFileInput';
 import { CustomCheckboxInput } from '@components/form/customCheckbox';
 import { useSelector } from 'react-redux';
+import { CustomPasswordInput } from '@components/form/custopPasswordInput';
 
 export default function RefFormPage() {
   const countries = useSelector((state: RootState) => state.countries);
@@ -62,7 +63,7 @@ export default function RefFormPage() {
             <CustomInput type="text" id="name" placeholder="name" label="Name" error={errors?.name} ref={nameRef} />
             <CustomInput type="number" id="age" placeholder="age" label="Age" error={errors?.age} ref={ageRef} />
             <CustomInput type="email" id="email" placeholder="email" label="Email" error={errors?.email} ref={emailRef} />
-            <CustomInput type="password" id="password" placeholder="password" label="Password" error={errors?.password} ref={passwordRef} />
+            <CustomPasswordInput id="password" placeholder="password" label="Password" error={errors?.password} ref={passwordRef} />
             <CustomInput
               type="password"
               id="passwordConfirmation"
