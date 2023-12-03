@@ -4,17 +4,16 @@ import React from 'react';
 import { InputWrapper } from '../customInputWrapper';
 
 type CustomCheckboxInputProps = {
-  name: string;
   id: string;
   label: string;
   error?: FieldError | undefined;
 };
 
 export const CustomCheckboxInput = React.forwardRef<HTMLInputElement, CustomCheckboxInputProps>(
-  ({ name, id, label, error, ...rest }: CustomCheckboxInputProps, ref) => {
+  ({ id, label, error, ...rest }: CustomCheckboxInputProps, ref) => {
     return (
       <InputWrapper id={id} label={label} error={error} className={classNames.checkboxWrapper}>
-        <input type="checkbox" id={id} name={name} value={id} ref={ref} {...rest} />
+        <input type="checkbox" id={id} ref={ref} {...rest} />
       </InputWrapper>
     );
   }

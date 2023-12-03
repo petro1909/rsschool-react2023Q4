@@ -7,12 +7,14 @@ type TextInputProps = {
   id: string;
   label: string;
   error?: FieldError | undefined;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-export const CustomFileInput = forwardRef<HTMLInputElement, TextInputProps>(({ id, label, error, ...rest }: TextInputProps, ref) => {
+export const CustomFileInput = forwardRef<HTMLInputElement, TextInputProps>(({ id, label, error, onChange, ...rest }: TextInputProps, ref) => {
   const [imageSrc, setImageSrc] = useState<string>('');
   const displayImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
+      onChange && onChange(e);
       setImageSrc(URL.createObjectURL(e.target.files[0]));
     } else {
       setImageSrc('');

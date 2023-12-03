@@ -1,10 +1,11 @@
 import { FieldError } from 'react-hook-form';
 import classNames from './index.module.css';
+import { ValidationError } from 'yup';
 
 type InputWrapperProps = {
   id: string;
   label: string;
-  error?: FieldError | undefined;
+  error?: FieldError | ValidationError | undefined;
   children?: React.ReactNode;
   className?: string;
 };

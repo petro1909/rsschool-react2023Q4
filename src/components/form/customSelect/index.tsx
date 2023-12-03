@@ -41,7 +41,7 @@ export const CustomAutocompleteSelect = React.forwardRef<HTMLInputElement, Custo
     };
 
     return (
-      <InputWrapper id={id} label={label} error={error} onBlur={() => setElementsVisibility(false)}>
+      <InputWrapper id={id} label={label} error={error}>
         <section className={classNames.inputWrapper}>
           <input
             type="text"
@@ -52,7 +52,6 @@ export const CustomAutocompleteSelect = React.forwardRef<HTMLInputElement, Custo
             value={inputValue}
             onChange={handleChange}
             onFocus={() => setElementsVisibility(true)}
-            onBlur={() => setElementsVisibility(false)}
           />
           <button
             className={classNames.toggleButton}
