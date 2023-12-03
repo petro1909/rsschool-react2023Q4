@@ -1,0 +1,68 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+#root {
+  padding: 15px;
+    box-sizing: border-box;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+  margin: 5px;
+  font-weight: 500;
+  color: black;
+  text-decoration: inherit;
+}
+a:hover {
+  color: rgb(107, 107, 107);
+}
+a.active {
+  color: rgb(82, 82, 245);
+}
+a.active:hover {
+  color: rgb(192, 192, 255);
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  margin: 10px;
+  padding: 0.8em 4.0em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  color: rgb(255, 255, 255);
+  background-color: #1a1a1a;
+  cursor: pointer;
+}
+button:hover {
+  color: rgb(158, 158, 158);
+  background-color: #5f5e5e;
+}
+button:disabled {
+  background-color: gray;
+}
+hr {
+  margin: 0;
+}
+
+input[type="text"], 
+input[type="number"], 
+input[type="email"],
+input[type="password"] {
+  padding: 5px;
+  font-size: 18px;
+  width: 250px;
+  box-sizing: border-box;
+}
+label {
+  display: block;
+  font-size: 18px;
+}

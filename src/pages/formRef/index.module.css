@@ -1,0 +1,23 @@
+.form-wrapper {
+  border: 1px solid black;
+  border-radius: 20px;
+  width: 70%;
+  max-width: 1000px;
+  margin: 15px auto;
+  padding: 15px;
+}
+.form-title {
+  text-align: center;
+}
+.form-data-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+.right-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.submit-button-wrapper {
+  text-align: center;
+}

@@ -1,0 +1,9 @@
+.item-property {
+  display: inline-block;
+  margin: 10px;
+  font-size: 18px;
+  font-weight: 400;
+}
+.item-property-value {
+  font-weight: 600;
+}

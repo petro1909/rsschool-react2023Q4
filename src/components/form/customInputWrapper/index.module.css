@@ -1,0 +1,12 @@
+.custom-text-input-wrapper > * {
+  display: block;
+}
+.input-label {
+  margin: 5px 0;
+  font-weight: 500;
+}
+.error {
+  font-size: 18px;
+  padding-bottom: 10px;
+  height: 20px;
+}

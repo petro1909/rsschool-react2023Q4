@@ -1,0 +1,11 @@
+.item {
+  margin: 0;
+  font-size: 18px;
+}
+.item:hover {
+  cursor: pointer;
+  background-color: rgb(194, 194, 194);
+}
+.highlight {
+  color: red;
+}
