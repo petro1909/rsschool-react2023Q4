@@ -19,6 +19,7 @@ export default defineConfig({
       '@utils': path.resolve(__dirname, './src/utils'),
       '@redux': path.resolve(__dirname, './src/redux'),
       '@hooks': path.resolve(__dirname, './src/hooks'),
+      '@validation': path.resolve(__dirname, './src/validation'),
     },
   },
 });

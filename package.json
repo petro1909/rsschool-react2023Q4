@@ -10,7 +10,8 @@
     "stagedLint": "eslint",
     "format:fix": "prettier . --write",
     "format": "prettier . --check",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepare": "husky install"
   },
   "dependencies": {
     "react": "^18.2.0",
